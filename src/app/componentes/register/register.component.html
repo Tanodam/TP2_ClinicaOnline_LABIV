@@ -1,0 +1,42 @@
+
+  <form class="formulario" [formGroup]="registerData" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
+    </div>
+
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input type="text" class="form-control" id="apellido" name="apellido" formControlName="apellido">
+    </div>
+
+    <div class="form-group">
+      <label for="edad">Edad</label>
+      <input type="number" class="form-control" id="edad" name="edad" formControlName="edad">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email" placeholder="Enter email">
+      <small id="emailHelp" class="form-text">No compartiremos tu email con nadie.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="clave">Password</label>
+      <input type="password" class="form-control" id="clave" formControlName="clave" name="psw">
+    </div>
+
+    <div class="form-group">
+      <label><b>Paciente </b></label><input value="Paciente" (click)="seleccionoProfesional()" type="radio" checked name="tipo"><br>
+      <label><b>Profesional </b></label><input value="Profesional" (click)="seleccionoProfesional()" type="radio" name="tipo">
+      <select multiple *ngIf="profesional" formControlName="especialidadesSelected">
+        <option *ngFor="let item of especialidades" [value]="item">{{item.descripcion}}</option>
+      </select>
+    </div>
+    <app-imagen [descrImagen]="'Seleccione imagen 1/2'" (imagen)="imagen1($event)"></app-imagen>
+    <br>
+    <app-imagen [descrImagen]="'Seleccione imagen 2/2'" (imagen)="imagen2($event)"></app-imagen>
+    <br>
+    <button type="submit" class="btn btn-primary">Registrarme</button>
+    <button type="button" (click)="cancelar()" class="btn btn-danger">Cancelar</button>
+  </form>
