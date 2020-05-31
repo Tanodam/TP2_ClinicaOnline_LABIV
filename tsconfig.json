@@ -1,5 +1,6 @@
 {
   "compileOnSave": false,
+  "emitDecoratorMetadata": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
