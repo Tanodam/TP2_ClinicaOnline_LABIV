@@ -1,3 +1,7 @@
 .formulario{
     width: 450px;
 }
+
+.modal-header .close {
+    display:none;
+  }

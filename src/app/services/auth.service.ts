@@ -24,13 +24,17 @@ export class AuthService {
   {
     return new Promise((resolve, reject)=>{
       this.afsAuth.signInWithEmailAndPassword(email,pass)
-      .then(userData => resolve(userData),
+      .then(userData => {
+        resolve(userData);
+      },
       err => reject(err));
     })
   }
 
   logoutUser()
   {
+    console.log("Sesion cerrada");
+    localStorage.removeItem("usuarioEnLinea");
     return this.afsAuth.signOut();
   }
 }

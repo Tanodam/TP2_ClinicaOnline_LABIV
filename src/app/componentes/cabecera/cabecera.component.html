@@ -13,9 +13,16 @@
       <li  class="nav-item">
         <a class="nav-link" href="./Registro">Registro</a>
       </li>
-      <!-- <li class="nav-item">
+      <li  *ngIf="!this.logueado;" class="nav-item">
         <a class="nav-link" href="./Login">Login</a>
-      </li> -->
+      </li>
+      <li  *ngIf="this.logueado;" class="nav-item">
+        <a class="nav-link" href="" (click)="logOut()">Logout</a>
+      </li>
+      <li  *ngIf="this.admin" class="nav-item">
+        <a class="nav-link" href="./ListadoMedicos">Listado Medicos</a>
+      </li>
     </ul>
+
 
   </nav>

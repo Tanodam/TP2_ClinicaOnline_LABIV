@@ -1,1 +1,64 @@
-<app-cabecera></app-cabecera>
+
+<button hidden type="button" id="btnModalError" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  <button hidden type="button" id="btnModalError" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+    Launch demo modal
+  </button>
+  
+  <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">ERROR</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Usuario no encontrado
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="volverALogin()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="modal fade show" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+          <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input [(ngModel)]="this.email" type="email" class="form-control" id="usuario" placeholder="Correo" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Contraseña</span>
+              </div>
+              <input [(ngModel)]="this.clave" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="medico" (click)="completarCampos('admin')" class="btn btn-info">Admin</button>
+          <button type="button" id="paciente" (click)="completarCampos('paciente')" class="btn btn-info">Paciente</button>
+          <button type="button" id="medico" (click)="completarCampos('medico')" class="btn btn-info">Medico</button>
+          <button type="button" data-backdrop="false" data-dismiss="modal" routerLink="/" class="btn btn-danger">Cancelar</button>
+          <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-success">Ingresar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -14,7 +14,8 @@ import { environment } from '../environments/environment';
 import { RegisterComponent } from './componentes/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImagenComponent } from './componentes/imagen/imagen.component';
-import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
     CabeceraComponent,
     LoginComponent,
     RegisterComponent,
-    ImagenComponent
+    ImagenComponent,
+    ListaMedicosAdminComponent
   ],
   imports: [
     ReactiveFormsModule,

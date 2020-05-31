@@ -38,23 +38,26 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.especialidades = this.serviceEspecialidades.obtenerEspecialidades();
     console.log(this.especialidades);
+
+    let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
+    element.click();
   }
   onSubmit() :void{
     const form = this.registerData.value;
       if(this.profesional){
-        this.onRegister(new Medico(new Usuario(form.nombre , form.apellido , form.edad,form.email,form.clave,'MEDICO'),form.especialidadesSelected,false))
+        this.onRegister(new Medico(new Usuario(form.nombre , form.apellido , form.edad,form.email,form.clave,'MEDICO', null),form.especialidadesSelected,null))
       }else{
-        this.onRegister( new Usuario(form.nombre , form.apellido , form.edad,form.email,form.clave,'USER') );
+        this.onRegister( new Usuario(form.nombre , form.apellido , form.edad,form.email,form.clave,'USER',null));
       }
   }
   onRegister(usuario:Usuario):void{
     const form = this.registerData.value;
-    this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
-    this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
-    this.usuarioService.crear(usuario);    
     this.authService.register(usuario.mail,usuario.password)
     .then((res)=>
     {
+      this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
+      this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
+      this.usuarioService.crear(usuario);    
       this.onLoginRedirect();
     }).catch(err => console.log('error: ' + err.message));
   }

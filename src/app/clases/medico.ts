@@ -8,9 +8,16 @@ export class Medico extends Usuario{
 
     
     constructor( usuario:Usuario, especialidad:Especialidad[] , aprobado :boolean ){
-        super(usuario.nombre,usuario.apellido,usuario.edad,usuario.mail,usuario.password,usuario.tipo);
+        super(usuario.nombre,usuario.apellido,usuario.edad,usuario.mail,usuario.password,usuario.tipo, usuario.childKey);
         this.especialidades=especialidad;
-        this.aprobado = aprobado;
+        if(aprobado != null)
+        {
+            this.aprobado = aprobado;
+        }
+        else
+        {
+            this.aprobado = false;
+        }
     }
 
 }{
