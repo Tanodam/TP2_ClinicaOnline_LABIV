@@ -60,6 +60,12 @@ export class UsuariosService {
         }); 
       })
       .catch((e) => console.info('Error. No se realizo el fetch: ' + e));
+      this.usuarios.forEach(element => {
+        if(element.tipo == "MEDICO")
+        {
+          medicos.push(element);
+        }
+      });
       return medicos;
     }
 
@@ -92,5 +98,16 @@ export class UsuariosService {
           return usuario.mail, usuario.tipo;
         }
 
+    }
+
+    public actualizar(usuario:Usuario)
+    {
+      if(usuario.tipo === "MEDICO")
+      {
+        database().ref('medicos/' + usuario.childKey)
+        .update(usuario)
+        .then(() => console.info("Actualizacion exitosa"))
+        .catch(() => console.info("No se pudo actualizar"));
+      }
     }
 }

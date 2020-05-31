@@ -10,7 +10,7 @@
       <li  class="nav-item">
         <a class="nav-link" href="./Informacion">Informacion</a>
       </li>
-      <li  class="nav-item">
+      <li  class="nav-item" *ngIf="!this.logueado;">
         <a class="nav-link" href="./Registro">Registro</a>
       </li>
       <li  *ngIf="!this.logueado;" class="nav-item">
