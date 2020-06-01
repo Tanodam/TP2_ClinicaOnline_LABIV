@@ -15,7 +15,8 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImagenComponent } from './componentes/imagen/imagen.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component'
+import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component';
+import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/li
     LoginComponent,
     RegisterComponent,
     ImagenComponent,
-    ListaMedicosAdminComponent
+    ListaMedicosAdminComponent,
+    ListaPacientesAdminComponent
   ],
   imports: [
     ReactiveFormsModule,

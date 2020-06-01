@@ -8,18 +8,13 @@
       <tr>
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
-        <th scope="col">Aprobado</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of profesionales" (click)="seleccionado(item)"
+      <tr *ngFor="let item of pacientes" (click)="seleccionado(item)"
         data-toggle="modal" data-target="#exampleModal">
         <td>{{item.nombre}}</td>
         <td>{{item.apellido}}</td>
-        <td *ngIf="item.aprobado"> <button class="btn btn-success" disabled>Aprobado</button>
-        </td>
-        <td *ngIf="!item.aprobado"><button class="btn btn-danger" disabled>No
-            Aprobado</button></td>
       </tr>
 
     </tbody>
@@ -33,7 +28,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Profesional</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Pacientes</h5>
         <button type="button" class="close" data-dismiss="modal"
           aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -49,26 +44,6 @@
           <img [src]="this.imagen1" width="100px" alt="">
           <img [src]="this.imagen2" width="100px" alt="">
         </div>
-
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Especialidad</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of this.selected.especialidades; let i=index">
-              <td>{{item.descripcion}}</td>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer" style="justify-content: center;"
-          *ngIf="selected">
-          <button *ngIf="!selected.aprobado" type="button" class="btn
-            btn-success" (click)="habilitar()" data-dismiss="modal">Habilitar</button>
-          <button *ngIf="selected.aprobado" type="button" class="btn btn-danger"
-            data-dismiss="modal" (click)="deshabilitar()">Deshabilitar</button>
         </div>
       </div>
     </div>

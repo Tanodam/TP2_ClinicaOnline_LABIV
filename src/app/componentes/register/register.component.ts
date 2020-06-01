@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
   especialidades:Especialidad[] = []; 
 
   constructor(private authService: AuthService, private router: Router, private formBuilder:FormBuilder,
-    private serviceEspecialidades:EspecilidadesService, private usuarioService:UsuariosService) { }
+    private serviceEspecialidades:EspecilidadesService, private usuarioService:UsuariosService) {
+    }
   
   public registerData: FormGroup = this.formBuilder.group({
     email: new FormControl('', [ Validators.email,Validators.required]),
@@ -57,7 +58,7 @@ export class RegisterComponent implements OnInit {
     {
       this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
       this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
-      this.usuarioService.crear(usuario);    
+      this.usuarioService.crear(usuario);
       this.onLoginRedirect();
     }).catch(err => console.log('error: ' + err.message));
   }

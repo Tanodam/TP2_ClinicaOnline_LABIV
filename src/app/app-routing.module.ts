@@ -7,12 +7,14 @@ import { RegisterComponent } from './componentes/register/register.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { AuthGuard } from './guards/auth.guard'
 import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component';
+import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component';
 
 const routes: Routes = [{path: '' ,component: HomeComponent},
 {path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard]},
 {path: 'Registro' ,component: RegisterComponent},
 {path: 'Login' ,component: LoginComponent},
-{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent}];
+{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent},
+{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

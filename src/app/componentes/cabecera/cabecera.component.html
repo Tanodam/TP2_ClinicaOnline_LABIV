@@ -1,4 +1,3 @@
-<p>cabecera works!</p>
 <nav class="navbar fixed-top navbar-light bg-light">
 
     <ul class="nav nav-tabs" >
@@ -19,8 +18,14 @@
       <li  *ngIf="this.logueado;" class="nav-item">
         <a class="nav-link" href="" (click)="logOut()">Logout</a>
       </li>
-      <li  *ngIf="this.admin" class="nav-item">
-        <a class="nav-link" href="./ListadoMedicos">Listado Medicos</a>
+      <li *ngIf="this.admin" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Listado Medicos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="./ListadoMedicos">Medicos</a>
+          <a class="dropdown-item" href="./ListadoPacientes">Pacientes</a>
+        </div>
       </li>
     </ul>
 
