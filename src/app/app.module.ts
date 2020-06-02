@@ -16,7 +16,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ImagenComponent } from './componentes/imagen/imagen.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component';
-import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component'
+import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component';
+import { AltaTurnoComponent } from './componentes/alta-turno/alta-turno.component';
+import { ConsultaTurnoComponent } from './componentes/consulta-turno/consulta-turno.component';
+import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadormedico.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,11 @@ import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admi
     RegisterComponent,
     ImagenComponent,
     ListaMedicosAdminComponent,
-    ListaPacientesAdminComponent
+    ListaPacientesAdminComponent,
+    AltaTurnoComponent,
+    ConsultaTurnoComponent,
+    BuscadormedicoComponent,
+
   ],
   imports: [
     ReactiveFormsModule,

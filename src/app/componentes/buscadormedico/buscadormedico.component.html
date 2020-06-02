@@ -1,0 +1,12 @@
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-3">
+          <label for="selectEspecialidad">Seleccione una especialidad</label>
+        <select class="custom-select" (change)="seleccionado($event.target.value)" id="selectEspecialidad">
+            <option *ngFor="let item of especialidades" (change)="seleccionado(item)" [value]="item">{{item}}</option>
+          </select>
+      </div>
+    </div>
+  </div>
+

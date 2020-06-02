@@ -10,21 +10,22 @@ import { Usuario } from 'src/app/clases/usuario';
 export class CabeceraComponent implements OnInit {
   logueado:any = false;
   admin:any = false;
+  usuario:Usuario = null;
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
-    let usuario = localStorage.getItem("usuarioEnLinea");
-    if(usuario)
-    {
-      this.logueado = true;
-      if(usuario.includes('ADMIN'))
-      {
-        this.admin = true;
-      }
-    }
-    else{
-      this.logueado = false;
-    }
+    this.usuario = JSON.parse(localStorage.getItem("usuarioEnLinea"));
+  //   if(usuario)
+  //   {
+  //     this.logueado = true;
+  //     if(usuario.includes('ADMIN'))
+  //     {
+  //       this.admin = true;
+  //     }
+  //   }
+  //   else{
+  //     this.logueado = false;
+  //   }
   }
   logOut()
   {

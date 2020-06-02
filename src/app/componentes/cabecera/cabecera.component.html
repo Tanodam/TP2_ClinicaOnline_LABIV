@@ -9,16 +9,16 @@
       <li  class="nav-item">
         <a class="nav-link" href="./Informacion">Informacion</a>
       </li>
-      <li  class="nav-item" *ngIf="!this.logueado;">
+      <li  class="nav-item" *ngIf="!this.usuario;">
         <a class="nav-link" href="./Registro">Registro</a>
       </li>
-      <li  *ngIf="!this.logueado;" class="nav-item">
+      <li  *ngIf="!this.usuario;" class="nav-item">
         <a class="nav-link" href="./Login">Login</a>
       </li>
-      <li  *ngIf="this.logueado;" class="nav-item">
+      <li  *ngIf="this.usuario;" class="nav-item">
         <a class="nav-link" href="" (click)="logOut()">Logout</a>
       </li>
-      <li *ngIf="this.admin" class="nav-item dropdown">
+      <li *ngIf="this.usuario.tipo == 'ADMIN'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Listado Medicos
         </a>
@@ -26,6 +26,14 @@
           <a class="dropdown-item" href="./ListadoMedicos">Medicos</a>
           <a class="dropdown-item" href="./ListadoPacientes">Pacientes</a>
         </div>
+        <li class="nav-item dropdown">
+          <a *ngIf="this.usuario"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Turnos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a *ngIf="this.usuario.tipo == 'USER'"class="dropdown-item" href="./altaTurnos">Solicitar Turno</a>
+            <a class="dropdown-item" href="./consultaTurnos">Ver Turnos Pendientes</a>
+          </div>
       </li>
     </ul>
 

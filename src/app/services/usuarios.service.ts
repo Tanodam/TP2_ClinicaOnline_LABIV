@@ -55,7 +55,7 @@ export class UsuariosService {
       snapshot.forEach((child) => {
         var data = child.val();
         medicos.push(new Medico(new Usuario(data.nombre, data.apellido, data.edad, data.mail, data.password, data.tipo, child.key)
-          , data.especialidades, data.aprobado));
+          , data.especialidades, data.aprobado, data.diasAtencion, data.horasAtencion));
       });
       localStorage.setItem('medicos', JSON.stringify(medicos));
       medicos.forEach(element => {

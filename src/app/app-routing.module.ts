@@ -8,13 +8,17 @@ import { LoginComponent } from './componentes/login/login.component';
 import { AuthGuard } from './guards/auth.guard'
 import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/lista-medicos-admin.component';
 import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component';
+import { ConsultaTurnoComponent } from './componentes/consulta-turno/consulta-turno.component';
+import { AltaTurnoComponent } from './componentes/alta-turno/alta-turno.component';
 
 const routes: Routes = [{path: '' ,component: HomeComponent},
 {path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard]},
 {path: 'Registro' ,component: RegisterComponent},
 {path: 'Login' ,component: LoginComponent},
 {path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent},
-{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent}];
+{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent},
+{path: 'altaTurnos' ,component: AltaTurnoComponent},
+{path: 'consultaTurnos' ,component: ConsultaTurnoComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

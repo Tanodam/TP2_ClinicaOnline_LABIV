@@ -89,6 +89,16 @@
                 <select multiple *ngIf="profesional" formControlName="especialidadesSelected">
                   <option *ngFor="let item of especialidades" [value]="item">{{item.descripcion}}</option>
                 </select>
+                <br>
+                <label *ngIf="profesional"><b>Dias de atencion  </b></label>
+                <select multiple *ngIf="profesional" formControlName="diasSelected">
+                  <option *ngFor="let item of dias" [value]="item">{{item}}</option>
+                </select>
+                <br>
+                <label *ngIf="profesional"><b>Horas de atencion  </b></label>
+                <select multiple *ngIf="profesional" formControlName="horasSelected">
+                  <option *ngFor="let item of horasAtencion" [value]="item">{{item}}</option>
+                </select>
               </div>
               <app-imagen [descrImagen]="'Seleccione imagen 1/2'" (imagen)="imagen1($event)"></app-imagen>
               <br>
