@@ -59,7 +59,7 @@
       </table>
     </div>
   </div>
-  <button *ngIf="this.fechaTurno && this.horaSeleccionada" type="button" class="btn btn-success">Solicitar Turno</button>
+  <button *ngIf="this.fechaTurno && this.horaSeleccionada" (click)="solicitarTurno()" type="button" class="btn btn-success">Solicitar Turno</button>
 </div>
 
 

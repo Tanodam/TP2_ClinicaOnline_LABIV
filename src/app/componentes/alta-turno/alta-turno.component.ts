@@ -4,6 +4,8 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Usuario } from 'src/app/clases/usuario';
 import { Medico } from 'src/app/clases/medico';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { TurnosService } from 'src/app/services/turnos.service';
+import { Turno } from 'src/app/clases/turno';
 
 @Component({
   selector: 'app-alta-turno',
@@ -23,7 +25,7 @@ export class AltaTurnoComponent implements OnInit {
   public isDisabled
   public fechaTurno;
   public diasAtencionMedico = [];
-  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar) {
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private turnoService:TurnosService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 15);
   }
@@ -40,38 +42,41 @@ export class AltaTurnoComponent implements OnInit {
     horasSelected: new FormControl()
   });
   seleccionado(profesional) {
+    this.diasAtencionMedico = [];
     this.profesional = profesional;
     this.profesional.diasAtencion.forEach(element => {
       switch (element) {
         case "Lunes":
-          this.diasAtencionMedico.push("2");
+          this.diasAtencionMedico.push("1");
           break;
         case "Martes":
-          this.diasAtencionMedico.push("3");
+          this.diasAtencionMedico.push("2");
           break;
         case "Miercoles":
-          this.diasAtencionMedico.push("4");
+          this.diasAtencionMedico.push("3");
           break;
         case "Jueves":
-          this.diasAtencionMedico.push("5");
+          this.diasAtencionMedico.push("4");
           break;
         case "Viernes":
-          this.diasAtencionMedico.push("6");
+          this.diasAtencionMedico.push("5");
           break;
         case "Sabado":
-          this.diasAtencionMedico.push("7");
+          this.diasAtencionMedico.push("6");
           break;
       }
     });
     
-    this.isDisabled = (date: NgbDate) => {   
-      if(this.diasAtencionMedico.includes(this.calendar.getWeekday(date).toString()) || this.calendar.getWeekday(date) == 7)
-      {
-        console.log(date.day);    
-          return date.day
-        }
+    this.isDisabled = (date: NgbDate, current: {month: number}) => {   
+      if(!this.diasAtencionMedico.includes(this.calendar.getWeekday(date).toString()))
+      {    
+          console.log(date.day);
+          return date.day;
+      }
       
     };
+   
+    console.log(this.isDisabled);
   }
   filtrarEspecialidad(especialidad) {
     this.especialidadFiltrada = especialidad;
@@ -96,5 +101,11 @@ export class AltaTurnoComponent implements OnInit {
 
   seleccionarHora(e): void {
     this.horaSeleccionada = e;
+  }
+
+  solicitarTurno():void
+  {
+    this.turnoService.crear(new Turno(this.usuario.mail, this.profesional.mail, this.fechaTurno, 
+                                      this.horaSeleccionada, 30, this.especialidadFiltrada, "", "0"));
   }
 }
