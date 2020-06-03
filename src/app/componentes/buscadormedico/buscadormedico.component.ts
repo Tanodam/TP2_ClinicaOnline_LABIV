@@ -19,12 +19,15 @@ export class BuscadormedicoComponent implements OnInit {
   {
     let profesionales = JSON.parse(localStorage.getItem("medicos"));
     profesionales.forEach(element => {
-      element.especialidades.forEach(especialidad => {
-        if(!this.especialidades.includes(especialidad.descripcion))
-        {
-          this.especialidades.push(especialidad.descripcion);
-        }
-      });
+      if(element.aprobado)
+      {
+        element.especialidades.forEach(especialidad => {
+          if(!this.especialidades.includes(especialidad.descripcion))
+          {
+            this.especialidades.push(especialidad.descripcion);
+          }
+        });
+      }
     });
   }
 

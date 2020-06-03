@@ -70,13 +70,11 @@ export class AltaTurnoComponent implements OnInit {
     this.isDisabled = (date: NgbDate, current: {month: number}) => {   
       if(!this.diasAtencionMedico.includes(this.calendar.getWeekday(date).toString()))
       {    
-          console.log(date.day);
           return date.day;
       }
       
     };
    
-    console.log(this.isDisabled);
   }
   filtrarEspecialidad(especialidad) {
     this.especialidadFiltrada = especialidad;
@@ -87,8 +85,8 @@ export class AltaTurnoComponent implements OnInit {
     let profesionales = JSON.parse(localStorage.getItem("medicos"));
     profesionales.forEach(element => {
       element.especialidades.forEach(especialidad => {
-        if (!this.profesionales.includes(element) && this.especialidadFiltrada === especialidad.descripcion) {
-          console.log(especialidad)
+        if (!this.profesionales.includes(element) && 
+        this.especialidadFiltrada === especialidad.descripcion) {
           this.profesionales.push(element);
         }
       });
@@ -96,7 +94,6 @@ export class AltaTurnoComponent implements OnInit {
   }
   comprobar() {
     this.fechaTurno = this.diaSeleccionado.day.toString() +"/"+ this.diaSeleccionado.month.toString()+"/"+ this.diaSeleccionado.year.toString();
-    console.log(this.fechaTurno);
   }
 
   seleccionarHora(e): void {
