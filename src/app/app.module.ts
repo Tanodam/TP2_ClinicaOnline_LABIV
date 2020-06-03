@@ -20,6 +20,8 @@ import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admi
 import { AltaTurnoComponent } from './componentes/alta-turno/alta-turno.component';
 import { ConsultaTurnoComponent } from './componentes/consulta-turno/consulta-turno.component';
 import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadormedico.component';
+import { DisponibilidadMedicoComponent } from './componentes/disponibilidad-medico/disponibilidad-medico.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadorme
     AltaTurnoComponent,
     ConsultaTurnoComponent,
     BuscadormedicoComponent,
+    DisponibilidadMedicoComponent,
 
   ],
   imports: [
@@ -45,7 +48,8 @@ import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadorme
     AppRoutingModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
