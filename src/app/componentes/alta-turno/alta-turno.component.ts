@@ -19,13 +19,39 @@ export class AltaTurnoComponent implements OnInit {
   public profesional: Medico;
   public diaSeleccionado;
   public minuteStep;
-  public horaSeleccionada;
+  public horaSeleccionada = null;
   public fromDate;
   public toDate;
   public isDisabled
   public fechaTurno;
   public diasAtencionMedico = [];
-  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private turnoService:TurnosService) {
+  public sabado = false;
+  public isActive;
+
+  ctrl = new FormControl('', (control: FormControl) => {
+    const value = control.value;
+    if (!value) {
+      this.isActive = false;
+      return null;
+    }
+
+    if (value.hour < 8) {
+      this.isActive = false;
+      return { tooEarly: true };
+    }
+    if (value.hour > 19) {
+      this.isActive = false;
+      return { tooLate: true };
+    }
+    if (this.sabado) {
+      this.isActive = false;
+      return { tooLateSabado: true };
+    }
+
+    return null;
+  });
+
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private turnoService: TurnosService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 15);
   }
@@ -39,7 +65,7 @@ export class AltaTurnoComponent implements OnInit {
     nombre: new FormControl(),
     nombreProfesional: new FormControl(),
     diasSelected: new FormControl(),
-    horasSelected: new FormControl()
+    horasSelected: new FormControl(),
   });
   seleccionado(profesional) {
     this.diasAtencionMedico = [];
@@ -66,15 +92,17 @@ export class AltaTurnoComponent implements OnInit {
           break;
       }
     });
-    
-    this.isDisabled = (date: NgbDate, current: {month: number}) => {   
-      if(!this.diasAtencionMedico.includes(this.calendar.getWeekday(date).toString()))
-      {    
-          return date.day;
+
+    this.isDisabled = (date: NgbDate, current: { month: number }) => {
+      if (!this.diasAtencionMedico.includes(this.calendar.getWeekday(date).toString())) {
+        return date.day;
       }
-      
+      if (this.calendar.getWeekday(date) === 6) {
+        this.sabado = true;
+      }
+
     };
-   
+
   }
   filtrarEspecialidad(especialidad) {
     this.especialidadFiltrada = especialidad;
@@ -85,24 +113,65 @@ export class AltaTurnoComponent implements OnInit {
     let profesionales = JSON.parse(localStorage.getItem("medicos"));
     profesionales.forEach(element => {
       element.especialidades.forEach(especialidad => {
-        if (!this.profesionales.includes(element) && 
-        this.especialidadFiltrada === especialidad.descripcion) {
+        if (!this.profesionales.includes(element) &&
+          this.especialidadFiltrada === especialidad.descripcion) {
           this.profesionales.push(element);
         }
       });
     });
   }
   comprobar() {
-    this.fechaTurno = this.diaSeleccionado.day.toString() +"/"+ this.diaSeleccionado.month.toString()+"/"+ this.diaSeleccionado.year.toString();
+    this.fechaTurno = this.diaSeleccionado.day.toString() + "/" + this.diaSeleccionado.month.toString() + "/" + this.diaSeleccionado.year.toString();
+    console.log(this.horaSeleccionada);
   }
 
-  seleccionarHora(e): void {
-    this.horaSeleccionada = e;
+  seleccionarDia(e): void {
+    this.diaSeleccionado = e;
+    this.sabado = false;
+    if (this.calendar.getWeekday(e) === 6) {
+      this.sabado = true;
+    }
+
+    this.ctrl = new FormControl('', (control: FormControl) => {
+      const value = control.value;
+      if (!value) {
+        this.isActive = false;
+        return null;
+      }
+
+      if (value.hour < 8) {
+        this.isActive = false;
+        return { tooEarly: true };
+      }
+      if (value.hour > 19) {
+        this.isActive = false;
+        return { tooLate: true };
+      }
+      if (this.sabado && value.hour > 14) {
+        this.isActive = false;
+        return { tooLateSabado: true };
+      }
+      else
+      {
+        this.isActive = true;
+        if(value.minute == 0)
+        { 
+          this.horaSeleccionada = value.hour.toString() +":"+ "00";
+        }
+        else
+        {
+          this.horaSeleccionada = value.hour.toString() +":"+ value.minute.toString();
+        }
+      }
+
+      return null;
+    });
   }
 
-  solicitarTurno():void
-  {
-    this.turnoService.crear(new Turno(this.usuario.mail, this.profesional.mail, this.fechaTurno, 
-                                      this.horaSeleccionada, 30, this.especialidadFiltrada, "", "0"));
+  solicitarTurno(): void {
+    let nombrePaciente = this.usuario.nombre +" "+ this.usuario.apellido;
+    let nombreMedico = this.profesional.nombre +" "+ this.profesional.apellido
+    this.turnoService.crear(new Turno(nombrePaciente, nombreMedico, this.usuario.mail, this.profesional.mail,
+                this.fechaTurno, this.horaSeleccionada, 30, this.especialidadFiltrada,null,null,null));
   }
 }

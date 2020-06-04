@@ -20,7 +20,6 @@
                 table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Profesional</th>
                         <th scope="col">Paciente</th>
                         <th scope="col">Especialidad</th>
                         <th scope="col">Dia</th>
@@ -32,7 +31,6 @@
                     <tr *ngFor="let item of this.turnosPaciente"
                         (click)="seleccionado(item)" data-toggle="modal"
                         data-target="#exampleModal">
-                        <td>{{item.medico}}</td>
                         <td>{{item.paciente}}</td>
                         <td>{{item.especialidad}}</td>
                         <td>{{item.fecha}}</td>
@@ -61,7 +59,7 @@
             </div>
             <div *ngIf="selected" class="modal-body">
                 <div>
-                    <h2>{{this.selected.medico}}</h2>
+                    <h2>{{this.selected.paciente}}</h2>
                     <img [src]="this.imagen1" width="100px" alt="">
                     <img [src]="this.imagen2" width="100px" alt="">
                     <h5>Estado: {{this.selected.estado}}</h5>
@@ -69,29 +67,32 @@
                     <h5>{{this.selected.fecha}} a las {{this.selected.horario}}</h5>
                     <div>
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
-                        <textarea disabled class="form-control"
-                         id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
+                        <textarea [(ngModel)]="this.resenia" class="form-control" id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
+                      </div>
+                      <div>
+                        <label for="exampleFormControlTextarea2">Reseña Paciente</label>
+                        <textarea class="form-control"
+                            id="exampleFormControlTextarea2" disabled
+                             rows="2">{{this.selected.reseniaPaciente}}</textarea>
                     </div>
                 </div>
-                <div>
-                    <label for="exampleFormControlTextarea2">Reseña Paciente</label>
-                    <textarea class="form-control"
-                        id="exampleFormControlTextarea2"
-                        [(ngModel)]="this.resenia" rows="2">{{this.selected.reseniaPaciente}}</textarea>
+                <div class="modal-footer" style="justify-content: center;"
+                    *ngIf="selected">
+                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado'" type="button" class="btn
+                        btn-danger" (click)="cancelar()"
+                        data-dismiss="modal">Cancelar</button>
+                        <button *ngIf="selected.estado == 'Pendiente' || selected.estado != 'Aceptado' && selected.estado != 'Cancelado'" type="button" class="btn
+                        btn-primary" (click)="aceptar()"
+                        data-dismiss="modal">Aceptar</button>
+                        <button *ngIf="selected.estado == 'Aceptado' || selected.estado != 'Cancelado'" type="button" class="btn
+                        btn-primary" (click)="atender()"
+                        data-dismiss="modal">Atender</button>
+                        <button type="button" class="btn
+                        btn-light" (click)="guardarResenia()"
+                        data-dismiss="modal">Guardar</button>
                 </div>
-            </div>
-            <div class="modal-footer" style="justify-content: center;"
-                *ngIf="selected">
-                <button *ngIf="selected.estado == 'Pendiente' || selected.estado == 'Aceptado' " type="button" class="btn
-                    btn-danger" (click)="cambiarEstado()"
-                    data-dismiss="modal">Cancelar</button>
-
-                <button type="button" class="btn
-                    btn-light" (click)="guardarResenia()"
-                    data-dismiss="modal">Guardar</button>
-            </div>
-            <div>
+                <div>
+                </div>
             </div>
         </div>
     </div>
-</div>

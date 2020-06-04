@@ -31,8 +31,9 @@
             Turnos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a *ngIf="this.usuario.tipo == 'USER'"class="dropdown-item" href="./altaTurnos">Solicitar Turno</a>
-            <a class="dropdown-item" href="./consultaTurnos">Ver Turnos Pendientes</a>
+            <a *ngIf="this.usuario.tipo == 'USER'" class="dropdown-item" href="./altaTurnos">Solicitar Turno</a>
+            <a *ngIf="this.usuario.tipo == 'USER'"class="dropdown-item" href="./consultaTurnos">Ver Turnos</a>
+            <a *ngIf="this.usuario.tipo == 'MEDICO'"class="dropdown-item" href="./consultaTurnoMedico">Ver Turnos</a>
           </div>
       </li>
     </ul>

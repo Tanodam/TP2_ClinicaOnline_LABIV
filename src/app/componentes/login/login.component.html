@@ -53,11 +53,22 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="medico" (click)="completarCampos('admin')" class="btn btn-info">Admin</button>
-          <button type="button" id="paciente" (click)="completarCampos('paciente')" class="btn btn-info">Paciente</button>
-          <button type="button" id="medico" (click)="completarCampos('medico')" class="btn btn-info">Medico</button>
-          <button type="button" data-backdrop="false" data-dismiss="modal" routerLink="/" class="btn btn-danger">Cancelar</button>
-          <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-success">Ingresar</button>
+          <div class="container">
+            <div class="row">
+              <button type="button" data-backdrop="false" data-dismiss="modal" routerLink="/" class="btn btn-danger">Cancelar</button>
+              <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-success">Ingresar</button>
+              <br>
+            </div>
+          <div class="row">
+            <button type="button" id="medico" (click)="completarCampos('picallo')" class="btn btn-info">Medico Picallo</button>
+            <button type="button" id="medico" (click)="completarCampos('nazzi')" class="btn btn-info">Medico Nazzi</button>
+            <br>
+          </div>
+          <div class="row">
+            <button type="button" id="medico" (click)="completarCampos('admin')" class="btn btn-info">Admin</button>
+            <button type="button" id="paciente" (click)="completarCampos('desario')" class="btn btn-info">Paciente Desario</button>
+            <button type="button" id="paciente" (click)="completarCampos('perez')" class="btn btn-info">Paciente Perez</button>
+          </div>
         </div>
       </div>
     </div>

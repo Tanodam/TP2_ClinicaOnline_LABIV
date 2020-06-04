@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   public imagenDos = false;
   public especialidades:Especialidad[] = [];
   public dias = [];
-  public horasAtencion = [];
 
   constructor(private authService: AuthService, private router: Router, private formBuilder:FormBuilder,
     private serviceEspecialidades:EspecilidadesService, private usuarioService:UsuariosService) {
@@ -45,7 +44,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.especialidades = this.serviceEspecialidades.obtenerEspecialidades();
     this.dias = Turno.dias;
-    this.horasAtencion = Turno.horarios;
     let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
     element.click();
   }
@@ -80,7 +78,6 @@ export class RegisterComponent implements OnInit {
   }
   seleccionoProfesional(){
     this.profesional = !this.profesional;
-    
   }
 
   imagen1(event){
@@ -90,6 +87,16 @@ export class RegisterComponent implements OnInit {
   imagen2(event){
     this.imagenDos = event;
   }
+
+  myRecaptcha = new FormControl(false);
+ 
+    onScriptLoad() {
+        console.log('Google reCAPTCHA loaded and is ready for use!')
+    }
+ 
+    onScriptError() {
+        console.log('Something went long when loading the Google reCAPTCHA')
+    }
 
 
 }

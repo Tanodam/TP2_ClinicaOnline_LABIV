@@ -80,24 +80,30 @@
       <div class="modal-body">
         <div class="cointainer">
           <div class="row">
-            <div class="col">
+            <div class="col" *ngIf="this.profesional">
               <ngb-datepicker [(ngModel)]="diaSeleccionado" [minDate]="this.fromDate"
                 [maxDate]="this.toDate"
-                [markDisabled]="isDisabled">>
+                [markDisabled]="isDisabled"
+                (dateSelect)="seleccionarDia($event)">
               </ngb-datepicker>
             </div>
-            <div class="col" *ngIf="this.profesional">
-              <select class="mini" (change)="seleccionarHora($event.target.value)">
-                <option selected>Elija un horario</option>
-                <option *ngFor="let item of this.profesional.horasAtencion"
-                  [value]="item">{{item}}</option> -->
-              </select>
+            <div class="col" *ngIf="this.diaSeleccionado">
+              <div class="form-group">
+                <ngb-timepicker disabled [formControl]="ctrl" required requiredSabado [minuteStep]="minuteStep"></ngb-timepicker>
+                <div *ngIf="ctrl.valid" class="small form-text text-success">Horario Disponible</div>
+                <div *ngIf="ctrl.errors" class="small form-text text-danger">
+                  <div *ngIf="ctrl.errors['required']">Seleccione un horario entre las 08:00 y las 19:00. Sabados entre 08:00 y 14:00</div>
+                  <div *ngIf="ctrl.errors['tooLate']">La clinica cierra a las 19</div>
+                  <div *ngIf="ctrl.errors['tooLateSabado']">La clinica cierra a las 14</div>
+                  <div *ngIf="ctrl.errors['tooEarly']">La clinica abre a las 8</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="comprobar()" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" [disabled]="!isActive" (click)="comprobar()" data-dismiss="modal">Seleccionar</button>
       </div>
     </div>
   </div>

@@ -22,6 +22,8 @@ import { ConsultaTurnoComponent } from './componentes/consulta-turno/consulta-tu
 import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadormedico.component';
 import { DisponibilidadMedicoComponent } from './componentes/disponibilidad-medico/disponibilidad-medico.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConsultaTurnoMedicoComponent } from './componentes/consulta-turno-medico/consulta-turno-medico.component';
+import { RecaptchaModule } from 'angular-google-recaptcha';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ConsultaTurnoComponent,
     BuscadormedicoComponent,
     DisponibilidadMedicoComponent,
+    ConsultaTurnoMedicoComponent,
 
   ],
   imports: [
@@ -49,7 +52,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    NgbModule
+    NgbModule,
+    RecaptchaModule.forRoot({
+      siteKey: '6LeOigAVAAAAAGuH6uSPVqPnE6hpV11UmQLUdYm_',
+  }),
   ],
   providers: [],
   bootstrap: [AppComponent]

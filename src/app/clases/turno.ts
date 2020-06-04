@@ -1,41 +1,71 @@
 import { Especialidad } from './especialidad';
+import { ThrowStmt } from '@angular/compiler';
 
 export class Turno
 {
-    private contador:number = 0;
     public id: string;
-    public detalle: string;
     public paciente: string;
     public medico: string;
     public duracion: number;
     public fecha: Date;
     public horario: string;
-    public reseñaPaciente:string;
-    public reseñaMedico:string;
+    public reseniaPaciente:string;
+    public reseniaMedico:string;
     public especialidad: Especialidad; 
     public estado: string;
+    public horarios: string;
+    public childKey:string = "";
+    public emailPaciente:string = "";
+    public emailMedico:string;
     public static dias:string[] = ["Lunes", "Martes", "Miercoles","Jueves", "Viernes", "Sabado"];
-    public static horarios: string[] = ["8:00", "8:30" , "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", 
-                                        "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00",
-                                        "15:30", "16:00", "16:30", "17:00", "17:30", "18:00"];
 
-    constructor(paciente: string, medico: string, fecha: Date, horario: string,
+        constructor(paciente: string, medico: string,emailPaciente:string,emailMedico:string, fecha: Date, horario: string,
                                 duracion: number, especialidad: Especialidad,
-                                detalle: string, id?: string)
+                                childKey?:string, reseniaMedico?:string,
+                                reseniaPaciente?:string, estado?:string)
     {
         this.paciente = paciente;
         this.medico = medico;
+        this.emailMedico = emailMedico;
+        this.emailPaciente = emailPaciente;
         this.fecha = fecha;
         this.duracion = duracion;
         this.especialidad = especialidad;
-        this.detalle = detalle;
-        this.estado = "Pendiente"
         this.horario = horario;
-        this.id = id;
+        this.id = this.generarId();
+        if(estado)
+        {
+            this.estado = estado;
+        }
+        else
+        {
+            this.estado = "Pendiente"
+        }
+        if(childKey)
+        {
+            this.childKey = childKey;
+        }
+        if(reseniaMedico)
+        {
+            this.reseniaMedico = reseniaMedico;
+        }
+        if(reseniaPaciente)
+        {
+            this.reseniaPaciente = reseniaPaciente;
+        }
     }
 
-    generarId()
+    generarId():string
     {
-        //consulta a la base de datos
+        let turnos = JSON.parse(localStorage.getItem("turnos"));
+        if(!turnos)
+        {
+            return "0";
+        }
+        else
+        {
+            let ultimoTurno = turnos.length;
+            return ultimoTurno;
+        }
     }
 }

@@ -41,74 +41,94 @@
     <button type="submit" class="btn btn-primary">Registrarme</button>
     <button type="button" (click)="cancelar()" class="btn btn-danger">Cancelar</button>
   </form> -->
-  <button hidden type="button" id="btnModalError" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-  </button>
+<button hidden type="button" id="btnModalError" class="btn btn-primary"
+  data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
 
-  <div class="modal fade show" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
-          <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <form class="formulario" [formGroup]="registerData" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
-              </div>
-          
-              <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" formControlName="apellido">
-              </div>
-          
-              <div class="form-group">
-                <label for="edad">Edad</label>
-                <input type="number" class="form-control" id="edad" name="edad" formControlName="edad">
-              </div>
-          
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email" placeholder="Enter email">
-                <small id="emailHelp" class="form-text">No compartiremos tu email con nadie.</small>
-              </div>
-          
-              <div class="form-group">
-                <label for="clave">Password</label>
-                <input type="password" class="form-control" id="clave" formControlName="clave" name="psw">
-              </div>
-          
-              <div class="form-group">
-                <label><b>Paciente </b></label><input value="Paciente" (click)="seleccionoProfesional()" type="radio" checked name="tipo"><br>
-                <label><b>Profesional </b></label><input value="Profesional" (click)="seleccionoProfesional()" type="radio" name="tipo">
-                <select multiple *ngIf="profesional" formControlName="especialidadesSelected">
-                  <option *ngFor="let item of especialidades" [value]="item">{{item.descripcion}}</option>
-                </select>
-                <br>
-                <label *ngIf="profesional"><b>Dias de atencion  </b></label>
-                <select multiple *ngIf="profesional" formControlName="diasSelected">
-                  <option *ngFor="let item of dias" [value]="item">{{item}}</option>
-                </select>
-                <br>
-                <label *ngIf="profesional"><b>Horas de atencion  </b></label>
-                <select multiple *ngIf="profesional" formControlName="horasSelected">
-                  <option *ngFor="let item of horasAtencion" [value]="item">{{item}}</option>
-                </select>
-              </div>
-              <app-imagen [descrImagen]="'Seleccione imagen 1/2'" (imagen)="imagen1($event)"></app-imagen>
+<div class="modal fade show" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form class="formulario" [formGroup]="registerData"
+            (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre"
+                formControlName="nombre">
+            </div>
+
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" class="form-control" id="apellido"
+                name="apellido" formControlName="apellido">
+            </div>
+
+            <div class="form-group">
+              <label for="edad">Edad</label>
+              <input type="number" class="form-control" id="edad" name="edad"
+                formControlName="edad">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email"
+                aria-describedby="emailHelp" formControlName="email"
+                placeholder="Enter email">
+              <small id="emailHelp" class="form-text">No compartiremos tu email
+                con nadie.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="clave">Password</label>
+              <input type="password" class="form-control" id="clave"
+                formControlName="clave" name="psw">
+            </div>
+
+            <div class="form-group">
+              <label><b>Paciente </b></label><input value="Paciente"
+                (click)="seleccionoProfesional()" type="radio" checked
+                name="tipo"><br>
+              <label><b>Profesional </b></label><input value="Profesional"
+                (click)="seleccionoProfesional()" type="radio" name="tipo">
+              <select multiple *ngIf="profesional"
+                formControlName="especialidadesSelected">
+                <option *ngFor="let item of especialidades" [value]="item">{{item.descripcion}}</option>
+              </select>
               <br>
-              <app-imagen [descrImagen]="'Seleccione imagen 2/2'" (imagen)="imagen2($event)"></app-imagen>
-              <br>
-              <button type="submit" (click)="onSubmit()" data-backdrop="false" data-dismiss="modal" class="btn btn-primary">Registrarme</button>
-              <button type="button"  data-backdrop="false" data-dismiss="modal" (click)="cancelar()" class="btn btn-danger">Cancelar</button>
-            </form>
-          </div>
+              <label *ngIf="profesional"><b>Dias de atencion </b></label>
+              <select multiple *ngIf="profesional"
+                formControlName="diasSelected">
+                <option *ngFor="let item of dias" [value]="item">{{item}}</option>
+              </select>
+            </div>
+            <app-imagen [descrImagen]="'Seleccione imagen 1/2'"
+              (imagen)="imagen1($event)"></app-imagen>
+            <br>
+            <app-imagen [descrImagen]="'Seleccione imagen 2/2'"
+              (imagen)="imagen2($event)"></app-imagen>
+            <br>
+            <recaptcha
+              [formControl]="myRecaptcha"
+              (scriptLoad)="onScriptLoad()"
+              (scriptError)="onScriptError()"></recaptcha>
+            <br>
+            <button type="submit" (click)="onSubmit()" data-backdrop="false"
+              data-dismiss="modal" class="btn btn-primary">Registrarme</button>
+            <button type="button" data-backdrop="false" data-dismiss="modal"
+              (click)="cancelar()" class="btn btn-danger">Cancelar</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>

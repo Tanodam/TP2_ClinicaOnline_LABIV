@@ -10,6 +10,7 @@ import { ListaMedicosAdminComponent } from './componentes/lista-medicos-admin/li
 import { ListaPacientesAdminComponent } from './componentes/lista-pacientes-admin/lista-pacientes-admin.component';
 import { ConsultaTurnoComponent } from './componentes/consulta-turno/consulta-turno.component';
 import { AltaTurnoComponent } from './componentes/alta-turno/alta-turno.component';
+import { ConsultaTurnoMedicoComponent } from './componentes/consulta-turno-medico/consulta-turno-medico.component';
 
 const routes: Routes = [{path: '' ,component: HomeComponent},
 {path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard]},
@@ -18,7 +19,8 @@ const routes: Routes = [{path: '' ,component: HomeComponent},
 {path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent},
 {path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent},
 {path: 'altaTurnos' ,component: AltaTurnoComponent},
-{path: 'consultaTurnos' ,component: ConsultaTurnoComponent}];
+{path: 'consultaTurnos' ,component: ConsultaTurnoComponent},
+{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
