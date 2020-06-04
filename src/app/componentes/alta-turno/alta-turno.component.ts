@@ -114,7 +114,7 @@ export class AltaTurnoComponent implements OnInit {
     profesionales.forEach(element => {
       element.especialidades.forEach(especialidad => {
         if (!this.profesionales.includes(element) &&
-          this.especialidadFiltrada === especialidad.descripcion) {
+          this.especialidadFiltrada === especialidad.descripcion && element.aprobado) {
           this.profesionales.push(element);
         }
       });
