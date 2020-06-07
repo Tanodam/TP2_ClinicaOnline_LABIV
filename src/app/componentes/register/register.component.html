@@ -1,6 +1,5 @@
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 <button hidden type="button" id="btnModalError" class="btn btn-primary"
   data-toggle="modal" data-target="#exampleModalCenter">
   Launch demo modal
@@ -70,25 +69,24 @@
                 formControlName="diasSelected">
                 <option *ngFor="let item of dias" [value]="item">{{item}}</option>
               </select>
-              
-              
+
+
             </div>
-                <div class="form-group">
-                  <label for="agregarEspecialidad">Desea agregar una especialidad?</label>
-                  <input type="text" class="form-control" id="agregarEspecialidad"
-                    formControlName="especialidadNueva" name="agregarEspecialidad">
-                </div>
+            <div class="form-group">
+              <label for="agregarEspecialidad">Desea agregar una especialidad?</label>
+              <input type="text" class="form-control" id="agregarEspecialidad"
+                formControlName="especialidadNueva" name="agregarEspecialidad">
+            </div>
             <app-imagen [descrImagen]="'Seleccione imagen 1/2'"
               (imagen)="imagen1($event)"></app-imagen>
             <br>
             <app-imagen [descrImagen]="'Seleccione imagen 2/2'"
               (imagen)="imagen2($event)"></app-imagen>
             <br>
-            <recaptcha
-            [formControl]="myRecaptcha"
-            (resolved)="resolved($event)"> 
-            <!-- To Do, el captcha no funca. -->
-          </recaptcha>
+            <re-captcha (resolved)="resolved($event)"
+              formControlName="myRecaptcha"
+              siteKey="6LdPPwEVAAAAAMvY2LdrmWzHg6X6J4Pz9P7HNOlv">
+            </re-captcha>
             <br>
             <button type="submit" (click)="onSubmit()" data-backdrop="false"
               data-dismiss="modal" class="btn btn-primary">Registrarme</button>

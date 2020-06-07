@@ -36,16 +36,15 @@ export class TurnosService {
   }
 
   public actualizar(turno: Turno)
-  {
-    console.log(turno.childKey);
-    let turnos = JSON.parse(localStorage.getItem("turnos"));
-    for (let i = 0; i < turnos.length; i++) {
-      if (turnos[i].childKey === turnos.childKey) {
-          turnos.splice(i, 1, turno);
-          console.log("lo hice");
-      }
-  }
-  localStorage.setItem('turnos', JSON.stringify(turnos));
+  {     
+     let turnos = JSON.parse(localStorage.getItem("turnos"));
+  for (let i = 0; i < turnos.length; i++) {
+    if (turnos[i].id === turno.id) {
+      console.log(turnos[i]);
+        turnos.splice(i, 1, turno);
+    }
+}
+localStorage.setItem('turnos', JSON.stringify(turnos));
   return database().ref('turnos/' + turno.childKey)
                 .update(turno)
                 .then(() => {this.traerTurnos(), console.log("Actualizacion Exitosa")})

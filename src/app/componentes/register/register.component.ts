@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   public imagenDos = false;
   public especialidades:Especialidad[] = [];
   public dias = [];
+  myRecaptcha = new FormControl(false);
 
   constructor(private authService: AuthService, private router: Router, private formBuilder:FormBuilder,
     private serviceEspecialidades:EspecilidadesService, private usuarioService:UsuariosService) {
@@ -98,11 +99,11 @@ export class RegisterComponent implements OnInit {
     this.imagenDos = event;
   }
 
-  myRecaptcha = new FormControl(false);
+
   
-  resolved(e)
-  {
-    console.log(e);
+  resolved(captchaResponse: string, res) {
+    console.log(`Resolved response token: ${captchaResponse}`);
+   
   }
 
 }

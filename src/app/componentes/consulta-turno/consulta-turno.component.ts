@@ -68,7 +68,6 @@ export class ConsultaTurnoComponent implements OnInit {
   {
     if(this.nuevoEstado)
     {
-      console.log(this.nuevoEstado);
       this.selected.estado = this.nuevoEstado;
       this.selected.reseniaPaciente = this.resenia;
       this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());

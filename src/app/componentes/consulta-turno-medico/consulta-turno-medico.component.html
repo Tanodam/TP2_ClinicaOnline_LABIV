@@ -65,13 +65,13 @@
                     <h5>Estado: {{this.selected.estado}}</h5>
                     <h5>Especialidad: {{this.selected.especialidad}}</h5>
                     <h5>{{this.selected.fecha}} a las {{this.selected.horario}}</h5>
-                    <div *ngIf="this.selected.estado != 'Pendiente'">
+                    <div *ngIf="this.selected.estado == 'En Curso' || this.selected.estado == 'Finalizado'">
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
                         <textarea [(ngModel)]="this.resenia"
                             class="form-control"
                             id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
                     </div>
-                    <div *ngIf="this.selected.estado != 'Pendiente'">
+                    <div *ngIf="this.selected.estado == 'Finalizado'">
                         <label for="exampleFormControlTextarea2">Reseña Paciente</label>
                         <textarea class="form-control"
                             id="exampleFormControlTextarea2" disabled
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="justify-content: center;">
-                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado'" type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado' && selected.estado != 'En Curso'" type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
                     <button *ngIf="selected.estado == 'Pendiente'" type="button" class="btn btn-primary" (click)="aceptar()">Aceptar</button>
                     <button *ngIf="selected.estado == 'Aceptado'" type="button" class="btn btn-primary" (click)="enCurso()">Atender</button>
                     <button *ngIf="selected.estado == 'En Curso'" type="button" class="btn btn-success" (click)="finalizar()">Finalizar</button>

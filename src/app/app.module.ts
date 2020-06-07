@@ -22,7 +22,7 @@ import { BuscadormedicoComponent } from './componentes/buscadormedico/buscadorme
 import { DisponibilidadMedicoComponent } from './componentes/disponibilidad-medico/disponibilidad-medico.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsultaTurnoMedicoComponent } from './componentes/consulta-turno-medico/consulta-turno-medico.component';
-import { RecaptchaModule } from 'angular-google-recaptcha';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -52,9 +52,8 @@ import { RecaptchaModule } from 'angular-google-recaptcha';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     NgbModule,
-    RecaptchaModule.forRoot({
-      siteKey: '6LeNjAAVAAAAAGj_z393606V--llHK1oMS4An5DJ',
-  }),
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

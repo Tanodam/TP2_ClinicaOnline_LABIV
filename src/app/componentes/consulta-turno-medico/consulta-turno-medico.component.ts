@@ -86,13 +86,15 @@ export class ConsultaTurnoMedicoComponent implements OnInit {
 
   guardarResenia():void
   {
-    if(this.nuevoEstado)
+    if(this.nuevoEstado && this.nuevoEstado != "En Curso")
     {
-      console.log(this.estadoActual);
-      console.log(this.nuevoEstado);
       this.selected.estado = this.nuevoEstado;
       this.selected.reseniaMedico = this.resenia;
       this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    }
+    if(this.nuevoEstado == "En Curso")
+    {
+      this.selected.estado = this.nuevoEstado;
     }
   }
 }
