@@ -99,9 +99,7 @@ export class RegisterComponent implements OnInit {
     this.imagenDos = event;
   }
 
-
-  
-  resolved(captchaResponse: string, res) {
+  resolved(captchaResponse: string) {
     console.log(`Resolved response token: ${captchaResponse}`);
    
   }
