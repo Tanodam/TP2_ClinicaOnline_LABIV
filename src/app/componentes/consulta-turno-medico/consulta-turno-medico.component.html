@@ -52,7 +52,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalle Turno</h5>
-                <button type="button" class="close" data-dismiss="modal"
+                <button type="button" class="close" (click)="guardarResenia()" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,31 +65,24 @@
                     <h5>Estado: {{this.selected.estado}}</h5>
                     <h5>Especialidad: {{this.selected.especialidad}}</h5>
                     <h5>{{this.selected.fecha}} a las {{this.selected.horario}}</h5>
-                    <div>
+                    <div *ngIf="this.selected.estado != 'Pendiente'">
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
-                        <textarea [(ngModel)]="this.resenia" class="form-control" id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
-                      </div>
-                      <div>
+                        <textarea [(ngModel)]="this.resenia"
+                            class="form-control"
+                            id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
+                    </div>
+                    <div *ngIf="this.selected.estado != 'Pendiente'">
                         <label for="exampleFormControlTextarea2">Reseña Paciente</label>
                         <textarea class="form-control"
                             id="exampleFormControlTextarea2" disabled
-                             rows="2">{{this.selected.reseniaPaciente}}</textarea>
+                            rows="2">{{this.selected.reseniaPaciente}}</textarea>
                     </div>
                 </div>
-                <div class="modal-footer" style="justify-content: center;"
-                    *ngIf="selected">
-                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado'" type="button" class="btn
-                        btn-danger" (click)="cancelar()"
-                        data-dismiss="modal">Cancelar</button>
-                        <button *ngIf="selected.estado == 'Pendiente' || selected.estado != 'Aceptado' && selected.estado != 'Cancelado'" type="button" class="btn
-                        btn-primary" (click)="aceptar()"
-                        data-dismiss="modal">Aceptar</button>
-                        <button *ngIf="selected.estado == 'Aceptado' || selected.estado != 'Cancelado'" type="button" class="btn
-                        btn-primary" (click)="atender()"
-                        data-dismiss="modal">Atender</button>
-                        <button type="button" class="btn
-                        btn-light" (click)="guardarResenia()"
-                        data-dismiss="modal">Guardar</button>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado'" type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+                    <button *ngIf="selected.estado == 'Pendiente'" type="button" class="btn btn-primary" (click)="aceptar()">Aceptar</button>
+                    <button *ngIf="selected.estado == 'Aceptado'" type="button" class="btn btn-primary" (click)="enCurso()">Atender</button>
+                    <button *ngIf="selected.estado == 'En Curso'" type="button" class="btn btn-success" (click)="finalizar()">Finalizar</button>
                 </div>
                 <div>
                 </div>

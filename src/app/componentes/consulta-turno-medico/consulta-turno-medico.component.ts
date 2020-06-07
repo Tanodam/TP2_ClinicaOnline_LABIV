@@ -3,6 +3,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 
 import { Turno } from 'src/app/clases/turno';
 import { TurnosService } from 'src/app/services/turnos.service';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-consulta-turno-medico',
@@ -19,16 +20,21 @@ export class ConsultaTurnoMedicoComponent implements OnInit {
   public imagen1;
   public imagen2;
   public resenia;
-  constructor(private usuarioService: UsuariosService, private turnosService: TurnosService) { }
+  public estadoActual;
+  public nuevoEstado;
+  constructor(private usuarioService: UsuariosService, private turnosService: TurnosService) {
+    this.estados = [];
+   }
 
   ngOnInit(): void {
-    this.cargarSelect();
-    this.resenia = "";
-  }
-  cargarSelect() {
+    this.nuevoEstado = null;
     this.estados = [];
+    this.resenia = "";
+    this.turnos = [];
     this.usuario = JSON.parse(localStorage.getItem("usuarioEnLinea"))
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
+    
+    console.log(this.estados);
     this.turnos.forEach(element => {
       if (!this.estados.includes(element.estado) && element.emailMedico === this.usuario.mail) {
         this.estados.push(element.estado);
@@ -47,7 +53,7 @@ export class ConsultaTurnoMedicoComponent implements OnInit {
   }
 
   seleccionado(turno) {
-    console.log(turno);
+    this.estadoActual = turno.estado;
     this.resenia = turno.reseniaMedico;
     this.selected = turno;
     this.usuarioService.bajarImagenes(this.selected.emailPaciente + "1")
@@ -57,45 +63,36 @@ export class ConsultaTurnoMedicoComponent implements OnInit {
   }
 
   cancelar() {
-    this.selected.estado = "Cancelado";
-    this.turnosService.actualizar(this.selected).then(() => {
-      for (let i = 0; i < this.turnos.length; i++) {
-        if (this.turnos.length[i].id === this.selected.id) {
-          this.turnos.splice(i, 1, this.selected);
-        }
-      }
-      localStorage.setItem("turnos", JSON.stringify(this.turnos));
-      this.cargarSelect();
-    })
+    this.nuevoEstado = "Cancelado";
   }
 
   atender():void
   {
-    this.selected.estado = "Finalizado";
-    this.selected.reseniaMedico = this.resenia;
-    this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    this.nuevoEstado = "Finalizado";
   }
 
   aceptar():void
   {
-    this.selected.estado = "Aceptado";
-    this.selected.reseniaMedico = this.resenia;
-    this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    this.nuevoEstado = "Aceptado";
+  }
+  enCurso():void
+  {
+    this.nuevoEstado = "En Curso";
+  }
+  finalizar():void
+  {
+    this.nuevoEstado = "Finalizado";
   }
 
   guardarResenia():void
   {
-    this.selected.reseniaMedico = this.resenia;
-    this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());/*.then(() =>  window.location.reload());*/
+    if(this.nuevoEstado)
+    {
+      console.log(this.estadoActual);
+      console.log(this.nuevoEstado);
+      this.selected.estado = this.nuevoEstado;
+      this.selected.reseniaMedico = this.resenia;
+      this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    }
   }
 }
-
-/*//window.location.reload());
-      for (let i = 0; i < this.turnos.length; i++) {
-        if (this.turnos.length[i].id === this.selected.id) {
-          this.turnos.splice(i, 1, this.selected);
-        }
-      }
-      localStorage.setItem("turnos", JSON.stringify(this.turnos));
-      this.cargarSelect();
-    }  */

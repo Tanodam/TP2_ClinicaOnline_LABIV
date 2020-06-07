@@ -1,22 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Especialidad } from '../clases/especialidad';
+import * as firebase from 'firebase';
+import { database } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EspecilidadesService {
-  private especialidades = [new Especialidad("001","Pediatria"),
-  new Especialidad("002","Oftalmologia"),
-  new Especialidad("003","Clinica"),
-  new Especialidad("004","Otorrinolaringología"),
-  new Especialidad("005","Cardiologia"),
-  new Especialidad("006","Dermatologia")];
+  public especialidades = [];
+
 
   constructor() {
-   }
-   
-   obtenerEspecialidades()
-   {
-     return this.especialidades;
-    }
   }
+
+  obtenerEspecialidades() {
+    return this.especialidades;
+  }
+
+  public crear(especialidad: Especialidad) {
+    database().ref('especialidades')
+      .push(especialidad)
+      .then(() => console.info("Alta exitosa"))
+      .catch(() => console.info("No se pudo realizar alta"))
+  }
+
+  public traerEspecialidades(): Especialidad[]
+  {
+    let especialidades = new Array<Especialidad>();
+    console.info("Fetch de todas las especialidades");
+
+    database().ref('especialidades').on('value',(snapshot) => {         
+        snapshot.forEach((child) =>{
+          var data = child.val();
+          especialidades.push(new Especialidad(data.descripcion));
+        });
+        console.info("Especialidades");
+        console.log(this.especialidades);         
+        localStorage.setItem('especialidades', JSON.stringify(especialidades));
+    })
+    return especialidades;
+  }
+}

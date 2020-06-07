@@ -1,10 +1,8 @@
 export class Especialidad {
-    public codigo:string;
     public descripcion:string;
-    public duracion:number;
 
-    constructor( codigo:string, descripcion:string ){
-        this.codigo = codigo;
-        this.descripcion = descripcion;
+    constructor(descripcion:string, codigo?:string){
+        this.descripcion = descripcion[0].toUpperCase() + descripcion.substr(1).toLowerCase();
+        
     }
 }

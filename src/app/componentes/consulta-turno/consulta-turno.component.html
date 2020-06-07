@@ -54,7 +54,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalle Turno</h5>
-                <button type="button" class="close" data-dismiss="modal"
+                <button type="button" class="close" (click)="guardarResenia()" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -67,13 +67,13 @@
                     <h5>Estado: {{this.selected.estado}}</h5>
                     <h5>Especialidad: {{this.selected.especialidad}}</h5>
                     <h5>{{this.selected.fecha}} a las {{this.selected.horario}}</h5>
-                    <div>
+                    <div *ngIf="this.selected.estado != 'Pendiente'">
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
                         <textarea disabled class="form-control"
                          id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
                     </div>
                 </div>
-                <div>
+                <div *ngIf="this.selected.estado != 'Pendiente'">
                     <label for="exampleFormControlTextarea2">Reseña Paciente</label>
                     <textarea class="form-control"
                         id="exampleFormControlTextarea2"
@@ -83,12 +83,7 @@
             <div class="modal-footer" style="justify-content: center;"
                 *ngIf="selected">
                 <button *ngIf="selected.estado == 'Pendiente' || selected.estado == 'Aceptado' " type="button" class="btn
-                    btn-danger" (click)="cambiarEstado()"
-                    data-dismiss="modal">Cancelar</button>
-
-                <button type="button" class="btn
-                    btn-light" (click)="guardarResenia()"
-                    data-dismiss="modal">Guardar</button>
+                    btn-danger" (click)="cambiarEstado()">Cancelar</button>
             </div>
             <div>
             </div>

@@ -19,11 +19,14 @@ export class ConsultaTurnoComponent implements OnInit {
   public imagen1;
   public imagen2;
   public resenia;
+  public nuevoEstado;
+  public estadoActual;
   constructor(private usuarioService: UsuariosService, private turnosService:TurnosService) { }
 
   ngOnInit(): void {
     this.cargarSelect();
     this.resenia = "";
+    this.nuevoEstado = null;
   }
   cargarSelect()
   {
@@ -48,7 +51,7 @@ export class ConsultaTurnoComponent implements OnInit {
   }
 
   seleccionado(turno) {
-    console.log(turno);
+    this.estadoActual = turno.estado;
     this.resenia = turno.reseniaPaciente;
     this.selected = turno;
     this.usuarioService.bajarImagenes(this.selected.emailMedico + "1")
@@ -58,14 +61,22 @@ export class ConsultaTurnoComponent implements OnInit {
   }
 
   cambiarEstado() {
-    this.selected.estado = "Cancelado";
-    this.selected.reseniaPaciente = this.resenia;
-    this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    this.nuevoEstado = "Cancelado";
   }
 
   guardarResenia():void
   {
-    this.selected.reseniaPaciente = this.resenia;
-    this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());/*.then(() =>  window.location.reload());*/
+    if(this.nuevoEstado)
+    {
+      console.log(this.nuevoEstado);
+      this.selected.estado = this.nuevoEstado;
+      this.selected.reseniaPaciente = this.resenia;
+      this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    }
+    if(!this.nuevoEstado && this.resenia){
+      this.selected.reseniaPaciente = this.resenia;
+      this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+    }
+    
   }
 }

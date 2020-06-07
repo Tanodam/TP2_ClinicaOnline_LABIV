@@ -49,9 +49,16 @@ export class Turno
         {
             this.reseniaMedico = reseniaMedico;
         }
+        else{
+            this.reseniaMedico = "";
+        }
         if(reseniaPaciente)
         {
             this.reseniaPaciente = reseniaPaciente;
+        }
+        else
+        {
+            this.reseniaPaciente = "";
         }
     }
 

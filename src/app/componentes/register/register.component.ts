@@ -39,16 +39,26 @@ export class RegisterComponent implements OnInit {
     recaptchaReactive: new FormControl(null,Validators.required),
     especialidadesSelected: new FormControl(this.especialidades[0]),
     diasSelected: new FormControl(this.dias[0]),
-    horasSelected: new FormControl(this.dias[0])
+    horasSelected: new FormControl(this.dias[0]),
+    especialidadNueva: new FormControl('', [ Validators.minLength(3)]),
   });
   ngOnInit(): void {
-    this.especialidades = this.serviceEspecialidades.obtenerEspecialidades();
+
+    this.especialidades = this.serviceEspecialidades.traerEspecialidades();
     this.dias = Turno.dias;
     let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
     element.click();
   }
   onSubmit() :void{
     const form = this.registerData.value;
+    if(form.especialidadNueva && 3)
+    {
+      let especialidad = new Especialidad(form.especialidadNueva);
+      let especialidadExistente:Especialidad = this.especialidades.find(element => element.descripcion == especialidad.descripcion);
+      if(!especialidadExistente){
+        form.especialidadesSelected.push(new Especialidad(form.especialidadNueva));
+      }
+    }
       if(this.profesional){
         console.log(form.diasSelected);
         console.log(form.horasSelected);
@@ -60,14 +70,14 @@ export class RegisterComponent implements OnInit {
   }
   onRegister(usuario:Usuario):void{
     const form = this.registerData.value;
-    this.authService.register(usuario.mail,usuario.password)
-    .then((res)=>
-    {
-      this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
-      this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
-      this.usuarioService.crear(usuario);
-      this.onLoginRedirect();
-    }).catch(err => console.log('error: ' + err.message));
+    // this.authService.register(usuario.mail,usuario.password)
+    // .then((res)=>
+    // {
+    //   this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
+    //   this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
+    //   this.usuarioService.crear(usuario);
+    //   this.onLoginRedirect();
+    // }).catch(err => console.log('error: ' + err.message));
   }
 
   onLoginRedirect():void{
@@ -89,14 +99,10 @@ export class RegisterComponent implements OnInit {
   }
 
   myRecaptcha = new FormControl(false);
- 
-    onScriptLoad() {
-        console.log('Google reCAPTCHA loaded and is ready for use!')
-    }
- 
-    onScriptError() {
-        console.log('Something went long when loading the Google reCAPTCHA')
-    }
-
+  
+  resolved(e)
+  {
+    console.log(e);
+  }
 
 }
