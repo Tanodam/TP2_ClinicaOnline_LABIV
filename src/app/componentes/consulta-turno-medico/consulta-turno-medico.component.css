@@ -1,0 +1,14 @@
+.inputDato{
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 180px;
+    display: inline-block;
+  }
+
+  .labelDato
+  {
+      margin-right: 5px;
+  }
+  .btnAgregarDato{
+    margin-top: 6px;
+  }

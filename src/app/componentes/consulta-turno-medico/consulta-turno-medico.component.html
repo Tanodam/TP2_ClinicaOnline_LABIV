@@ -52,7 +52,8 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalle Turno</h5>
-                <button type="button" class="close" (click)="guardarResenia()" data-dismiss="modal"
+                <button type="button" class="close" (click)="guardarResenia()"
+                    data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,7 +66,8 @@
                     <h5>Estado: {{this.selected.estado}}</h5>
                     <h5>Especialidad: {{this.selected.especialidad}}</h5>
                     <h5>{{this.selected.fecha}} a las {{this.selected.horario}}</h5>
-                    <div *ngIf="this.selected.estado == 'En Curso' || this.selected.estado == 'Finalizado'">
+                    <div *ngIf="this.selected.estado == 'En Curso' ||
+                        this.selected.estado == 'Finalizado'">
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
                         <textarea [(ngModel)]="this.resenia"
                             class="form-control"
@@ -77,12 +79,49 @@
                             id="exampleFormControlTextarea2" disabled
                             rows="2">{{this.selected.reseniaPaciente}}</textarea>
                     </div>
+                    <div style="margin-top: 10px;" *ngIf="this.selected.arrayOpcionales.length > 0">
+                        <label><h5>Datos Adicionales</h5></label>
+                        <table class="table table-dark table-striped
+                            table-bordered
+                            table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Dato</th>
+                                    <th scope="col">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="this.selected.arrayOpcionales;">
+                                <tr *ngFor="let item of this.selected.arrayOpcionales">
+                                    <td>{{item.dato}}</td>
+                                    <td>{{item.valor}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="this.selected.estado == 'En Curso'">
+                        <button type="button" class="btn btn-dark btn-sm
+                            btnAgregarDato"
+                            (click)="agregarDato()">Agregar Dato</button>
+                        <br>
+                    </div>
+                    <div #div>
+
+                    </div>
+
                 </div>
                 <div class="modal-footer" style="justify-content: center;">
-                    <button *ngIf="selected.estado != 'Finalizado' && selected.estado != 'Cancelado' && selected.estado != 'En Curso'" type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
-                    <button *ngIf="selected.estado == 'Pendiente'" type="button" class="btn btn-primary" (click)="aceptar()">Aceptar</button>
-                    <button *ngIf="selected.estado == 'Aceptado'" type="button" class="btn btn-primary" (click)="enCurso()">Atender</button>
-                    <button *ngIf="selected.estado == 'En Curso'" type="button" class="btn btn-success" (click)="finalizar()">Finalizar</button>
+                    <button *ngIf="selected.estado != 'Finalizado' &&
+                        selected.estado != 'Cancelado' && selected.estado != 'En
+                        Curso'" type="button" class="btn btn-danger"
+                        (click)="cancelar()">Cancelar</button>
+                    <button *ngIf="selected.estado == 'Pendiente'" type="button"
+                        class="btn btn-primary" (click)="aceptar()">Aceptar</button>
+                    <button *ngIf="selected.estado == 'Aceptado'" type="button"
+                        class="btn btn-primary" (click)="enCurso()">Atender</button>
+                    <button *ngIf="selected.estado == 'En Curso'" type="button"
+                        class="btn btn-success" (click)="finalizar()">Finalizar</button>
+                    <button type="button"
+                        class="btn btn-dark" (click)="comprobar()">Comprobar</button>
                 </div>
                 <div>
                 </div>
