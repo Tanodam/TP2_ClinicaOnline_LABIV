@@ -3,6 +3,8 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 
 import { Turno } from 'src/app/clases/turno';
 import { TurnosService } from 'src/app/services/turnos.service';
+import { Encuesta } from 'src/app/clases/encuesta';
+import { EncuestasService } from 'src/app/services/encuestas.service';
 
 @Component({
   selector: 'app-consulta-turno',
@@ -21,15 +23,22 @@ export class ConsultaTurnoComponent implements OnInit {
   public resenia;
   public nuevoEstado;
   public estadoActual;
-  constructor(private usuarioService: UsuariosService, private turnosService:TurnosService) { }
+  public selectorProfesional: number;
+  public selectorStaff: number;
+  public selectorClinica: number;
+  public comentario:string;
+  public encuestaCompleta:boolean;
+  constructor(private usuarioService: UsuariosService, private turnosService: TurnosService,
+    private encuestaService:EncuestasService) { }
 
   ngOnInit(): void {
     this.cargarSelect();
     this.resenia = "";
     this.nuevoEstado = null;
+    this.comentario="";
+    this.encuestaCompleta = false;
   }
-  cargarSelect()
-  {
+  cargarSelect() {
     this.estados = [];
     this.usuario = JSON.parse(localStorage.getItem("usuarioEnLinea"))
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
@@ -64,18 +73,55 @@ export class ConsultaTurnoComponent implements OnInit {
     this.nuevoEstado = "Cancelado";
   }
 
-  guardarResenia():void
-  {
-    if(this.nuevoEstado)
-    {
+  guardarResenia(): void {
+    if (this.nuevoEstado) {
       this.selected.estado = this.nuevoEstado;
       this.selected.reseniaPaciente = this.resenia;
-      this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+      this.turnosService.actualizar(this.selected).then(() => window.location.reload());
     }
-    if(!this.nuevoEstado && this.resenia){
+    if (!this.nuevoEstado && this.resenia) {
       this.selected.reseniaPaciente = this.resenia;
-      this.turnosService.actualizar(this.selected).then(() =>  window.location.reload());
+      this.turnosService.actualizar(this.selected).then(() => window.location.reload());
     }
+
+  }
+  guardarEncuesta(): void {
     
+    if(this.selected && this.selectorClinica >=0 && this.selectorProfesional >=0 && this.selectorStaff >= 0)
+    {
+      this.encuestaCompleta = true;
+      this.encuestaService.crear(new Encuesta(this.selected.emailPaciente, this.selectorClinica, this.selectorProfesional,
+                  this.selectorStaff, this.comentario, this.selected.id));
+      this.selected.encuestaRealizada = true;
+      this.turnosService.actualizar(this.selected);
+      this.encuestaCompleta = false;
+    }
+  }
+
+  encuestaValida():void{
+    if(this.selected && this.selectorClinica >=0 && this.selectorProfesional >=0 && this.selectorStaff >= 0
+      && this.comentario.length >= 0)
+    {
+      this.encuestaCompleta = true;
+    }
+    else if(this.resenia.length >= 0)
+    {
+      this.selected.reseniaPaciente = this.resenia;
+    }
+  }
+
+  setRangeProfesional(value) {
+    this.selectorProfesional = value;
+    this.encuestaValida();
+  }
+
+  setRangeStaff(value) {
+    this.selectorStaff = value;
+    this.encuestaValida();
+  }
+
+  setRangeClinica(value) {
+    this.selectorClinica = value;
+    this.encuestaValida();
   }
 }

@@ -172,6 +172,6 @@ export class AltaTurnoComponent implements OnInit {
     let nombrePaciente = this.usuario.nombre +" "+ this.usuario.apellido;
     let nombreMedico = this.profesional.nombre +" "+ this.profesional.apellido
     this.turnoService.crear(new Turno(nombrePaciente, nombreMedico, this.usuario.mail, this.profesional.mail,
-                this.fechaTurno, this.horaSeleccionada, 30, this.especialidadFiltrada,null,null,null));
+                this.fechaTurno, this.horaSeleccionada, 30, this.especialidadFiltrada,null,null,null,null,null));
   }
 }

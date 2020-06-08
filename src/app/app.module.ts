@@ -23,6 +23,7 @@ import { DisponibilidadMedicoComponent } from './componentes/disponibilidad-medi
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsultaTurnoMedicoComponent } from './componentes/consulta-turno-medico/consulta-turno-medico.component';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
     BuscadormedicoComponent,
     DisponibilidadMedicoComponent,
     ConsultaTurnoMedicoComponent,
+    EncuestaComponent,
 
   ],
   imports: [

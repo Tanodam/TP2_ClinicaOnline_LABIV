@@ -26,6 +26,8 @@
                         <th scope="col">Dia</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Encuesta</th>
+
                     </tr>
                 </thead>
                 <tbody *ngIf="this.turnos;">
@@ -38,6 +40,12 @@
                         <td>{{item.fecha}}</td>
                         <td>{{item.horario}}</td>
                         <td>{{item.estado}}</td>
+                        <td *ngIf="!item.encuestaRealizada"> <button class="btn
+                                btn-danger" disabled>Encuesta No Realizada</button>
+                        </td>
+                        <td *ngIf="item.encuestaRealizada"> <button class="btn
+                                btn-success" disabled>Encuesta Realizada</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -54,7 +62,8 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalle Turno</h5>
-                <button type="button" class="close" (click)="guardarResenia()" data-dismiss="modal"
+                <button type="button" class="close" (click)="guardarResenia()"
+                    data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,7 +79,7 @@
                     <div *ngIf="this.selected.estado != 'Pendiente'">
                         <label for="exampleFormControlTextarea1">Reseña Medico</label>
                         <textarea disabled class="form-control"
-                         id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
+                            id="exampleFormControlTextarea1" rows="2">{{this.selected.reseniaMedico}}</textarea>
                     </div>
                 </div>
                 <div *ngIf="this.selected.estado != 'Pendiente'">
@@ -82,10 +91,88 @@
             </div>
             <div class="modal-footer" style="justify-content: center;"
                 *ngIf="selected">
-                <button *ngIf="selected.estado == 'Pendiente' || selected.estado == 'Aceptado' " type="button" class="btn
+                <button *ngIf="selected.estado == 'Pendiente' || selected.estado
+                    == 'Aceptado'" type="button" class="btn
                     btn-danger" (click)="cambiarEstado()">Cancelar</button>
+                <button *ngIf="!this.selected.encuestaRealizada && selected.estado == 'Finalizado'"
+                    data-backdrop="false" data-dismiss="modal"
+                    type="button" class="btn btn-secondary" data-toggle="modal"
+                    data-target="#modalEncuesta">Realizar Encuesta</button>
             </div>
             <div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal encuesta -->
+<div class="modal fade bd-example-modal-lg" id="modalEncuesta" tabindex="-1"
+    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Encuesta</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <h4><p>Gracias por atenderse en nuestra Clinica. </p></h4>
+                        <h5><p>A continuacion le ofrecemos unas breves preguntas
+                                para evaluar el servicio brindado</p></h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="rangeProfesional">¿Como evalua al
+                                profesional?</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input #Profesional id="rangeProfesional"
+                                    type="range" min="0" max="5"
+                                    (change)="setRangeProfesional(Profesional.value)"
+                                    value="0">
+                                <br>
+                                Valor: {{ selectorProfesional }}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="rangeStaff">¿Como evalua al staff?</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input #Staff id="rangeStaff" type="range"
+                                    min="0" max="5"
+                                    (change)="setRangeStaff(Staff.value)"
+                                    value="0">
+                                <br>
+                                Valor: {{ selectorStaff }}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="rangeStaff">¿Como evalua al staff?</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input #Clinica id="rangeStaff" type="range"
+                                    min="0" max="5"
+                                    (change)="setRangeClinica(Clinica.value)"
+                                    value="0">
+                                <br>
+                                Valor: {{ selectorClinica }}
+                            </div>
+                        </div>
+                    </div>
+                    <label for="consejo"><h5>Deje su comentario o consejo para poder seguir mejorando</h5></label>
+                    <textarea class="textarea" (keyup)="encuestaValida()" [(ngModel)]="comentario" maxlength="1000" id="consejo" cols="30"  rows="50"></textarea>
+                    <p>1000/ {{1000-this.comentario.length }}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="this.encuestaCompleta" type="button" class="btn btn-secondary btn-sm"
+                    (click)="guardarEncuesta()" data-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-danger btn-sm"
+                    data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

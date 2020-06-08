@@ -17,12 +17,13 @@ export class Turno
     public childKey:string = "";
     public emailPaciente:string = "";
     public emailMedico:string;
+    public encuestaRealizada:boolean;
     public static dias:string[] = ["Lunes", "Martes", "Miercoles","Jueves", "Viernes", "Sabado"];
 
         constructor(paciente: string, medico: string,emailPaciente:string,emailMedico:string, fecha: Date, horario: string,
                                 duracion: number, especialidad: Especialidad,
                                 childKey?:string, reseniaMedico?:string,
-                                reseniaPaciente?:string, estado?:string)
+                                reseniaPaciente?:string, estado?:string, encuesta?:boolean)
     {
         this.paciente = paciente;
         this.medico = medico;
@@ -59,6 +60,14 @@ export class Turno
         else
         {
             this.reseniaPaciente = "";
+        }
+        if(encuesta)
+        {
+            this.encuestaRealizada = encuesta;
+        }
+        else
+        {
+            this.encuestaRealizada = false;
         }
     }
 

@@ -1,3 +1,10 @@
 .modal-header .close {
     display:none;
   }
+
+  .btn
+  {
+    
+    margin-right: 4px;
+    margin-bottom: 7px;
+  }

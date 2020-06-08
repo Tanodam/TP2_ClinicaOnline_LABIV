@@ -1,4 +1,4 @@
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <button hidden type="button" id="btnModalError" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Launch demo modal
   </button>
@@ -51,24 +51,25 @@
               <input [(ngModel)]="this.clave" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
             </div>
           </div>
+          <re-captcha (resolved)="resolved($event)"
+          formControlName="myRecaptcha"
+          siteKey="6LdPPwEVAAAAAMvY2LdrmWzHg6X6J4Pz9P7HNOlv">
+        </re-captcha>
         </div>
         <div class="modal-footer">
           <div class="container">
             <div class="row">
               <button type="button" data-backdrop="false" data-dismiss="modal" routerLink="/" class="btn btn-danger">Cancelar</button>
-              <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-success">Ingresar</button>
+              <button [disabled]="!captchaCompleto" type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin(true)" class="btn btn-success">Ingresar</button>
+              <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin(false)" class="btn btn-secondary">Ingresar Sin Captcha</button>
+              <select #select (change)="completarCampos(select.value)">
+                <option selected >Seleccione un usuario </option>
+                <option *ngFor="let item of usuariosLogin" [value]="item.email">{{item.descripcion}}</option>
+              </select>
               <br>
             </div>
-          <div class="row">
-            <button type="button" id="medico" (click)="completarCampos('picallo')" class="btn btn-info">Medico Picallo</button>
-            <button type="button" id="medico" (click)="completarCampos('nazzi')" class="btn btn-info">Medico Nazzi</button>
-            <br>
-          </div>
-          <div class="row">
-            <button type="button" id="medico" (click)="completarCampos('admin')" class="btn btn-info">Admin</button>
-            <button type="button" id="paciente" (click)="completarCampos('desario')" class="btn btn-info">Paciente Desario</button>
-            <button type="button" id="paciente" (click)="completarCampos('perez')" class="btn btn-info">Paciente Perez</button>
-          </div>
+            <div class="row">
+            </div>
         </div>
       </div>
     </div>
