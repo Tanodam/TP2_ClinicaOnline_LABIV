@@ -32,11 +32,7 @@ export class LoginComponent implements OnInit {
   }
   
   onLogin(conCaptcha):void{
-    if(!conCaptcha)
-    {
-      this.captchaCompleto = true;
-    }
-    else if(conCaptcha)
+  if(!conCaptcha)
     {
 
       this.authService.loginEmailUser(this.email,this.clave)
