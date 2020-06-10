@@ -24,6 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsultaTurnoMedicoComponent } from './componentes/consulta-turno-medico/consulta-turno-medico.component';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-turnos.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
     DisponibilidadMedicoComponent,
     ConsultaTurnoMedicoComponent,
     EncuestaComponent,
+    BuscadorTurnosComponent,
 
   ],
   imports: [
@@ -56,6 +59,7 @@ import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
     NgbModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

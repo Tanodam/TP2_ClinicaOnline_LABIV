@@ -7,7 +7,7 @@
         FRA
       </a>
       <li  class="nav-item">
-        <a class="nav-link" href="./Informacion">Informacion</a>
+        <a class="nav-link" [routerLink]="'/Informacion'">Informacion</a>
       </li>
       <li  class="nav-item" *ngIf="!this.usuario;">
         <a class="nav-link" href="./Registro">Registro</a>
@@ -18,22 +18,23 @@
       <li  *ngIf="this.usuario;" class="nav-item">
         <a class="nav-link" href="" (click)="logOut()">Logout</a>
       </li>
-      <li *ngIf="this.usuario.tipo == 'ADMIN'" class="nav-item dropdown">
+      <li *ngIf="this.usuario && this.usuario.tipo == 'ADMIN'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Listado Medicos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="./ListadoMedicos">Medicos</a>
-          <a class="dropdown-item" href="./ListadoPacientes">Pacientes</a>
+          <a class="dropdown-item" [routerLink]="'/ListadoMedicos'">Medicos</a>
+          <a class="dropdown-item" [routerLink]="'/ListadoPacientes'">Pacientes</a>
         </div>
-        <li class="nav-item dropdown">
-          <a *ngIf="this.usuario"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li *ngIf="this.usuario" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Turnos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a *ngIf="this.usuario.tipo == 'USER'" class="dropdown-item" href="./altaTurnos">Solicitar Turno</a>
-            <a *ngIf="this.usuario.tipo == 'USER'"class="dropdown-item" href="./consultaTurnos">Ver Turnos</a>
-            <a *ngIf="this.usuario.tipo == 'MEDICO'"class="dropdown-item" href="./consultaTurnoMedico">Ver Turnos</a>
+            <a *ngIf="this.usuario.tipo == 'USER'" class="dropdown-item"[routerLink]="'/altaTurnos'">Solicitar Turno</a>
+            <a *ngIf="this.usuario.tipo == 'USER'"class="dropdown-item" [routerLink]="'/consultaTurnos'">Ver Turnos</a>
+            <a *ngIf="this.usuario.tipo == 'MEDICO'"class="dropdown-item" [routerLink]="'/consultaTurnoMedico'">Ver Turnos</a>
+            <a *ngIf="this.usuario.tipo == 'ADMIN'"class="dropdown-item" [routerLink]="'/todosLosTurnos'">Ver Todos Turnos</a>
           </div>
       </li>
     </ul>
