@@ -53,9 +53,7 @@ export class BuscadorTurnosComponent implements OnInit {
         })
         break;
       case "Fecha":
-        console.log(this.filter)
         this.turnos.forEach(turno => {
-          console.log(turno.fecha)
           if (this.filter == turno.fecha) {
 
               this.turnosFiltrados.push(turno);

@@ -121,8 +121,24 @@ export class AltaTurnoComponent implements OnInit {
     });
   }
   comprobar() {
-    this.fechaTurno = this.diaSeleccionado.year.toString() + "-" + this.diaSeleccionado.month.toString() + "-" + this.diaSeleccionado.day.toString();
-    console.log(this.horaSeleccionada);
+    let month;
+    let day;
+    if(this.diaSeleccionado.month.toString().length == 1)
+    {
+      month = "0"+ this.diaSeleccionado.month.toString();
+    }
+    else{
+      month = this.diaSeleccionado.month.toString();
+    }
+    if(this.diaSeleccionado.day.toString().length == 1)
+    {
+      day = "0"+ this.diaSeleccionado.day.toString();
+    }
+    else{
+      day = this.diaSeleccionado.day.toString();
+    }
+    this.fechaTurno = this.diaSeleccionado.year.toString() + "-" + month + "-" + day;
+    console.log(this.fechaTurno);
   }
 
   seleccionarDia(e): void {
