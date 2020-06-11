@@ -189,8 +189,6 @@ export class AltaTurnoComponent implements OnInit {
     let nombreMedico = this.profesional.nombre +" "+ this.profesional.apellido
     this.turnoService.crear(new Turno(nombrePaciente, nombreMedico, this.usuario.mail, this.profesional.mail,
     this.fechaTurno, this.horaSeleccionada, 30, this.especialidadFiltrada,null,null,null,null,null));
-    document.getElementById("exampleModalCenter").classList.remove("modal", "show", "fade");
-    document.getElementById("exampleModalCenter").innerHTML = "";
     let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
     element.click();
   }
