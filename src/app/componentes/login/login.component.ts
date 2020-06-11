@@ -31,9 +31,7 @@ export class LoginComponent implements OnInit {
     this.captchaCompleto = false;
   }
   
-  onLogin(conCaptcha):void{
-  if(!conCaptcha)
-    {
+  onLogin():void{
 
       this.authService.loginEmailUser(this.email,this.clave)
       .then((res)=>
@@ -50,7 +48,6 @@ export class LoginComponent implements OnInit {
         element.click();
       } );
     }
-  }
     
   onLoginRedirect():void{
     this.router.navigate(['']);
