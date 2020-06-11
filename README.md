@@ -1,9 +1,7 @@
 
-# **Clinica Online** icono-arg-gestion-de-salud
+# **Clinica Online** 🚀
 
 Este es un trabajo practico para UTN-FRA para la materia Laboratorio de Computacion IV - Primer Cuatrimestre del Coronavirus.
-
-### Horarios de Atencion 
 
 ### Horarios de Atencion 🕜
 
@@ -49,3 +47,6 @@ https://clinica-online-ddesario.herokuapp.com/
 
 _Angular - Bootstrap - Firebase
 
+## Autores ✒️
+
+* **Damián Eugenio Desario** - *Trabajo Inicial* - [tanodam](https://github.com/tanodam)
