@@ -1,9 +1,9 @@
 
-# **Clinica Online**
+# **Clinica Online** icono-arg-gestion-de-salud
 
-Nuestro sistema, permite tener todo el control y manejo sobre una clinica. 
-Permite el alta, baja y modificacion de los distintos perfiles, con sus respectivos atributos, la reserva de turnos y devolucion de la consutla luego de ser atendido.
-El sistema contempla distintos tipos de usuario para su buen funcionamiento
+Este es un trabajo practico para UTN-FRA para la materia Laboratorio de Computacion IV - Primer Cuatrimestre del Coronavirus.
+
+### Horarios de Atencion 
 
 ### Horarios de Atencion 🕜
 
@@ -37,47 +37,15 @@ Luego de esto, puede ser atendido, y responder un cuestionario sobre la atencion
 
 ```
 
-### Ingreso 🏥
+## Deploy 📦
 
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/ingreso.gif)
-
-### Registro ➕
-
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/registro.gif)
-
-## Despliegue 📦
-
-_El sistema esta deployado en firebase, y se deja el link para poder ingresar a el_
+_El sistema esta deployado en Heroku, y se deja el link para poder ingresar a el_
 ```
-https://clinica-online.firebaseapp.com/
+https://clinica-online-ddesario.herokuapp.com/
 ```
-
-
-
-
-
-
 
 
 ## Construido con 🛠️
 
-_Angular - firebase_
+_Angular - Bootstrap - Firebase
 
-Este es un trabajo practico para UTN-FRA, consta de realizar un sistema el cual tenga manejo de usuarios, y permita al usuario reservar turnos, y ser atendido
-
-## Requerimientos de la aplicación 🚀
-
-“La clínica OnLine, especialista en salud, cuenta
-actualmente con consultorios (6 en la actualidad),
-dos laboratorios (físicos en la clínica), y una sala
-de espera general. Está abierta al público de lunes
-a viernes en el horario de 8:00 a 19:00, y los
-sábados en el horario de 8:00 a 14:00.
-Trabajan en ella profesionales de diversas
-especialidades, que ocupan los consultorios acorde a su disponibilidad, y reciben en ellos
-pacientes con turno para consulta o tratamiento. Dichos turnos son pedidos por la web
-seleccionando el profesional o la especialidad .La duración mínima de un turno es 30 minutos.”
-pero los profesionales pueden cambiar la duración según su especialidad. un profesional puede
-tener más de una especialidad
-Estamos necesitando un sistema para que cada uno de los tipos de usuarios realicen las tareas
-que se detallan a continuación.
