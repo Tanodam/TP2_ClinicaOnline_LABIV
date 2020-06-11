@@ -111,8 +111,7 @@
                 </div>
                 <div class="modal-footer" style="justify-content: center;">
                     <button *ngIf="selected.estado != 'Finalizado' &&
-                        selected.estado != 'Cancelado' && selected.estado != 'En
-                        Curso'" type="button" class="btn btn-danger"
+                        selected.estado != 'Cancelado' && selected.estado != 'En Curso'" type="button" class="btn btn-danger"
                         (click)="cancelar()">Cancelar</button>
                     <button *ngIf="selected.estado == 'Pendiente'" type="button"
                         class="btn btn-primary" (click)="aceptar()">Aceptar</button>
