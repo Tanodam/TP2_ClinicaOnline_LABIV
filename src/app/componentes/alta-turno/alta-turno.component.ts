@@ -121,7 +121,7 @@ export class AltaTurnoComponent implements OnInit {
     });
   }
   comprobar() {
-    this.fechaTurno = this.diaSeleccionado.day.toString() + "/" + this.diaSeleccionado.month.toString() + "/" + this.diaSeleccionado.year.toString();
+    this.fechaTurno = this.diaSeleccionado.year.toString() + "-" + this.diaSeleccionado.month.toString() + "-" + this.diaSeleccionado.day.toString();
     console.log(this.horaSeleccionada);
   }
 

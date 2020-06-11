@@ -1,1 +1,57 @@
-<p>buscador-turnos works!</p>
+<app-cabecera></app-cabecera>
+<br><br>
+<br><br>
+
+<div class="container">
+    <div class="row">
+      <div class="col-8">
+          <select [(ngModel)]="selectedCriteria">
+              <option value="Medico">Medico</option>
+              <option value="Paciente">Paciente</option>
+              <option value="Especialidad">Especialidad</option>
+              <option value="Opcional">Opcional</option>
+              <option value="Fecha">Fecha</option>
+          </select>
+        <input *ngIf="selectedCriteria == 'Medico' ||
+                    selectedCriteria == 'Paciente' ||
+                    selectedCriteria == 'Especialidad' ||
+                    selectedCriteria == 'Opcional'" (keyup)="keyPress($event)" type="text" [(ngModel)]="filter" >
+        <input *ngIf="selectedCriteria == 'Fecha'" type="date" (change)="keyPress($event)" [(ngModel)]="filter">
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+            <div class="col-md">
+                <h4>Turnos</h4>
+                <table class="table table-dark table-striped table-bordered
+                    table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Medico</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Dia</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Datos Opcionales?</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="turnosFiltrados;">
+                        <tr *ngFor="let item of turnosFiltrados">
+                            <td>{{item.paciente}}</td>
+                            <td>{{item.medico}}</td>
+                            <td>{{item.especialidad}}</td>
+                            <td>{{item.fecha}}</td>
+                            <td>{{item.horario}}</td>
+                            <td>{{item.estado}}</td>
+                            <td *ngIf="item.arrayOpcionales.length > 0">Si</td>
+                            <td *ngIf="item.arrayOpcionales.length == 0">No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
