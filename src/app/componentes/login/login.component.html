@@ -60,7 +60,7 @@
           <div class="container">
             <div class="row">
               <button type="button" data-backdrop="false" data-dismiss="modal" routerLink="/" class="btn btn-danger">Cancelar</button>
-              <button [disabled]="!captchaCompleto" type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin(true)" class="btn btn-success">Ingresar</button>
+              <button [disabled]="!captchaCompleto" type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-success">Ingresar</button>
               <button type="button" data-backdrop="false" data-dismiss="modal" (click)="onLogin()" class="btn btn-secondary">Ingresar Sin Captcha</button>
               <select #select (change)="completarCampos(select.value)">
                 <option selected >Seleccione un usuario </option>
