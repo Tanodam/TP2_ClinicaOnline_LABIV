@@ -71,14 +71,14 @@ export class RegisterComponent implements OnInit {
   }
   onRegister(usuario:Usuario):void{
     const form = this.registerData.value;
-    // this.authService.register(usuario.mail,usuario.password)
-    // .then((res)=>
-    // {
-    //   this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
-    //   this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
-    //   this.usuarioService.crear(usuario);
-    //   this.onLoginRedirect();
-    // }).catch(err => console.log('error: ' + err.message));
+    this.authService.register(usuario.mail,usuario.password)
+    .then((res)=>
+    {
+      this.usuarioService.subirImagenes(this.imagenUno, form.email,1);
+      this.usuarioService.subirImagenes(this.imagenDos,form.email,2);
+      this.usuarioService.crear(usuario);
+      this.onLoginRedirect();
+    }).catch(err => console.log('error: ' + err.message));
   }
 
   onLoginRedirect():void{
