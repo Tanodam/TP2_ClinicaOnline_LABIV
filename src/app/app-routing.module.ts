@@ -20,9 +20,9 @@ const routes: Routes = [{path: '' ,component: HomeComponent,  data: {animation: 
 {path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent},
 {path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent},
 {path: 'altaTurnos' ,component: AltaTurnoComponent, data: {animation: 'AltaTurno'}},
-{path: 'consultaTurnos' ,component: ConsultaTurnoComponent, data: {animation: 'Inicio'} },
-{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent},
-{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent}
+{path: 'consultaTurnos' ,component: ConsultaTurnoComponent, data: {animation: 'AltaTurno'} },
+{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent, data: {animation: 'AltaTurno'}},
+{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent, data: {animation: 'AltaTurno'}}
 ];
 
 @NgModule({
