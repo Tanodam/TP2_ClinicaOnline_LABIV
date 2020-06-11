@@ -14,7 +14,8 @@ export class ListaMedicosAdminComponent implements OnInit {
   public imagen1;
   public imagen2;
   ngOnInit(): void {
-   this.profesionales = this.usuarioService.traerMedicos();
+    this.profesionales = [];
+   this.profesionales = JSON.parse(localStorage.getItem("medicos"));
    
   }
 

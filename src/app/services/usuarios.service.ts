@@ -101,11 +101,10 @@ export class UsuariosService {
   }
 
   public actualizar(usuario: Usuario) {
-    if (usuario.tipo === "MEDICO") {
       database().ref('medicos/' + usuario.childKey)
         .update(usuario)
         .then(() => console.info("Actualizacion exitosa"))
         .catch(() => console.info("No se pudo actualizar"));
-    }
+    
   }
 }
