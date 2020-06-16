@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TurnosService } from 'src/app/services/turnos.service';
 
 @Component({
   selector: 'app-buscador-turnos',
@@ -7,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscadorTurnosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private turnoService:TurnosService) { }
   public selectedCriteria: string;
   public filter: string;
   public turnos;
   public turnosFiltrados;
+  public turnoSeleccinado;
+  public encuestas;
+  public encuestaSeleccionada;
 
   ngOnInit(): void {
-    this.selectedCriteria = "Medico"
+    console.log(this.turnoService.turnosHarcoded());
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
+      this.turnoService.turnosHarcoded().forEach(element => {
+        this.turnos.push(element);
+      });
+    this.encuestas = JSON.parse(localStorage.getItem("encuestas"));
+    this.selectedCriteria = "Todos"
+    this.filtrar();
   }
 
   keyPress(event): void {
@@ -26,37 +36,46 @@ export class BuscadorTurnosComponent implements OnInit {
     this.turnosFiltrados = [];
     switch (this.selectedCriteria) {
       case "Medico":
-        this.turnos.forEach(turno => {
-          let medico = turno.medico.toLowerCase();
-          if (this.filter.length >= 3 && medico.includes(this.filter.toLowerCase())) {
-            // console.log(turno.medico);
-            this.turnosFiltrados.push(turno);
-          }
-        })
+        if (this.filter != null) {
+
+          this.turnos.forEach(turno => {
+            let medico = turno.medico.toLowerCase();
+            if (this.filter != "" && this.filter.length >= 3 && medico.includes(this.filter.toLowerCase())) {
+              // console.log(turno.medico);
+              this.turnosFiltrados.push(turno);
+            }
+          })
+        }
         break;
       case "Paciente":
-        this.turnos.forEach(turno => {
-          let paciente = turno.paciente.toLowerCase();
-          if (this.filter.length >= 3 && paciente.includes(this.filter.toLowerCase())) {
-            // console.log(turno.paciente);
-            this.turnosFiltrados.push(turno);
-          }
-        })
+        if (this.filter != null) {
+
+          this.turnos.forEach(turno => {
+            let paciente = turno.paciente.toLowerCase();
+            if (this.filter.length >= 3 && paciente.includes(this.filter.toLowerCase())) {
+              // console.log(turno.paciente);
+              this.turnosFiltrados.push(turno);
+            }
+          })
+        }
         break;
       case "Especialidad":
-        this.turnos.forEach(turno => {
-          let especialidad = turno.especialidad.toLowerCase();
-          if (this.filter.length >= 3 && especialidad.includes(this.filter.toLowerCase())) {
-            // console.log(turno.especialidad);
-            this.turnosFiltrados.push(turno);
-          }
-        })
+        if (this.filter != null) {
+
+          this.turnos.forEach(turno => {
+            let especialidad = turno.especialidad.toLowerCase();
+            if (this.filter.length >= 3 && especialidad.includes(this.filter.toLowerCase())) {
+              // console.log(turno.especialidad);
+              this.turnosFiltrados.push(turno);
+            }
+          })
+        }
         break;
       case "Fecha":
         this.turnos.forEach(turno => {
           if (this.filter == turno.fecha) {
 
-              this.turnosFiltrados.push(turno);
+            this.turnosFiltrados.push(turno);
           }
         })
         break;
@@ -72,9 +91,25 @@ export class BuscadorTurnosComponent implements OnInit {
           });
         })
         break;
-
+      case "Todos":
+        this.turnos.forEach(turno => {
+          this.turnosFiltrados.push(turno);
+        })
+        break;  
       default:
         break;
+    }
+  }
+
+
+  seleccionado(item)
+  {
+    console.log("entro")
+    this.turnoSeleccinado = item;
+    if(this.turnoSeleccinado.encuestaRealizada)
+    {
+      this.encuestaSeleccionada = this.encuestas.filter(x => x.keyTurno === this.turnoSeleccinado.childKey);
+      console.log(this.encuestaSeleccionada[0]);
     }
   }
 

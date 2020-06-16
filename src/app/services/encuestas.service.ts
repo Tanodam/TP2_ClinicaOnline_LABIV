@@ -14,10 +14,10 @@ export class EncuestasService {
         .push(turno)
         .then(() => console.info("Alta exitosa" + turno))
         .catch(() => console.info("No se pudo realizar alta"));
-        this.traerTurnos();
+        this.traerEncuestas();
   }
 
-  public traerTurnos(): Encuesta[]
+  public traerEncuestas(): Encuesta[]
   {
     let encuestas = new Array<Encuesta>();
     console.info("Fetch de todos las encuestas");
@@ -26,7 +26,7 @@ export class EncuestasService {
         snapshot.forEach((child) =>{
           var data = child.val();
           encuestas.push(new Encuesta(data.mailPaciente, data.valorInstalaciones, data.valorProfesional, 
-            data.valorStaffAdministrativo, data.consejo, data.idTurno));
+            data.valorStaffAdministrativo, data.consejo, data.idTurno, data.keyTurno));
         });
         localStorage.setItem('encuestas', JSON.stringify(encuestas));       
       })

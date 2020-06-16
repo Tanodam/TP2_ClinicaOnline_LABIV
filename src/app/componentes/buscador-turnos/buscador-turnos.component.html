@@ -4,54 +4,217 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-8">
-          <select [(ngModel)]="selectedCriteria">
-              <option value="Medico">Medico</option>
-              <option value="Paciente">Paciente</option>
-              <option value="Especialidad">Especialidad</option>
-              <option value="Opcional">Opcional</option>
-              <option value="Fecha">Fecha</option>
-          </select>
-        <input *ngIf="selectedCriteria == 'Medico' ||
-                    selectedCriteria == 'Paciente' ||
-                    selectedCriteria == 'Especialidad' ||
-                    selectedCriteria == 'Opcional'" (keyup)="keyPress($event)" type="text" [(ngModel)]="filter" >
-        <input *ngIf="selectedCriteria == 'Fecha'" type="date" (change)="keyPress($event)" [(ngModel)]="filter">
-    </div>
-    <div class="row">
-      <div class="col">
+        <div class="col-8">
+            <select [(ngModel)]="selectedCriteria" (change)="filtrar()"
+                class="inputSelect">
+                <option value="Todos">Todos</option>
+                <option value="Medico">Medico</option>
+                <option value="Paciente">Paciente</option>
+                <option value="Especialidad">Especialidad</option>
+                <option value="Opcional">Opcional</option>
+                <option value="Fecha">Fecha</option>
+            </select>
+            <input class="inputSelect" *ngIf="selectedCriteria == 'Medico' ||
+                selectedCriteria == 'Paciente' ||
+                selectedCriteria == 'Especialidad' ||
+                selectedCriteria == 'Opcional'" (keyup)="keyPress($event)"
+                type="text" [(ngModel)]="filter">
+            <input class="inputSelect" *ngIf="selectedCriteria == 'Fecha'"
+                type="date" (change)="keyPress($event)" [(ngModel)]="filter">
+        </div>
+        <div class="col-4">
+            <app-archivos></app-archivos>
+        </div>
         <div class="row">
-            <div class="col-md">
-                <h4>Turnos</h4>
-                <table class="table table-dark table-striped table-bordered
-                    table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Paciente</th>
-                            <th scope="col">Medico</th>
-                            <th scope="col">Especialidad</th>
-                            <th scope="col">Dia</th>
-                            <th scope="col">Hora</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Datos Opcionales?</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="turnosFiltrados;">
-                        <tr *ngFor="let item of turnosFiltrados">
-                            <td>{{item.paciente}}</td>
-                            <td>{{item.medico}}</td>
-                            <td>{{item.especialidad}}</td>
-                            <td>{{item.fecha}}</td>
-                            <td>{{item.horario}}</td>
-                            <td>{{item.estado}}</td>
-                            <td *ngIf="item.arrayOpcionales.length > 0">Si</td>
-                            <td *ngIf="item.arrayOpcionales.length == 0">No</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md">
+                        <h4>Turnos</h4>
+                        <table class="table table-dark table-striped
+                            table-bordered
+                            table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Paciente</th>
+                                    <th scope="col">Medico</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Dia</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Datos Opcionales?</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="turnosFiltrados;">
+                                <tr *ngFor="let item of turnosFiltrados"
+                                    (click)="seleccionado(item)"
+                                    data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    <td>{{item.paciente}}</td>
+                                    <td>{{item.medico}}</td>
+                                    <td>{{item.especialidad}}</td>
+                                    <td>{{item.fecha}}</td>
+                                    <td>{{item.horario}}</td>
+                                    <td>{{item.estado}}</td>
+                                    <td *ngIf="item.arrayOpcionales.length> 0">Si</td>
+                                    <td *ngIf="item.arrayOpcionales.length ==
+                                        0">No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-      </div>
     </div>
-  </div>
+</div>
+
+
+
+<!-- Modal encuesta -->
+<div *ngIf="encuestaSeleccionada" class="modal fade bd-example-modal-lg"
+    id="modalEncuesta" tabindex="-1"
+    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Encuesta</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="rangeProfesional">Evaluacion Profesional</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input disabled #Profesional
+                                    id="rangeProfesional"
+                                    type="range" min="0" max="5"
+                                    value="encuestaSeleccionada[0].valorProfesional">
+                                <br>
+                                Valor: {{
+                                encuestaSeleccionada[0].valorProfesional }}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="rangeStaff">Evaluacion Staff</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input disabled #Staff id="rangeStaff"
+                                    type="range"
+                                    min="0" max="5"
+                                    value="encuestaSeleccionada[0].valorStaffAdministrativo">
+                                <br>
+                                Valor: {{
+                                encuestaSeleccionada[0].valorStaffAdministrativo
+                                }}
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="rangeStaff">Evaluacion instalaciones</label>
+                            <div class="multi-range-field my-5 pb-5">
+                                <input disabled #Clinica id="rangeStaff"
+                                    type="range"
+                                    min="0" max="5"
+                                    value="encuestaSeleccionada[0].valorInstalaciones">
+                                <br>
+                                Valor: {{
+                                encuestaSeleccionada[0].valorInstalaciones }}
+                            </div>
+                        </div>
+                    </div>
+                    <label for="consejo"><h5>Comentario del paciente</h5></label>
+                    <textarea disabled class="textarea"
+                        [(ngModel)]="encuestaSeleccionada[0].consejo"
+                        maxlength="1000" id="consejo" cols="30" rows="50"></textarea>
+                    <p>1000/ {{1000-encuestaSeleccionada[0].consejo.length }}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm"
+                    data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal encuesta -->
+<div *ngIf="encuestaSeleccionada" class="modal fade bd-example-modal-lg"
+    id="exampleModal" tabindex="-1"
+    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Datos del Turno
+                    - ID: {{turnoSeleccinado.id }}</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h5>Datos Medico</h5>
+                    <div class="row">
+                        <label class="labelModal" for="nombreMedico">Medico</label>
+                        <input class="inputModal" type="text" id="nombreMedico"
+                            [(ngModel)]="turnoSeleccinado.medico">
+                        <label class="labelModal" for="especialidad">Especialidad</label>
+                        <input class="especialidad" type="text"
+                            id="especialidad"
+                            [(ngModel)]="turnoSeleccinado.especialidad">
+                        <label class="labelModal" for="emailMedico">Email medico</label>
+                        <input class="email" type="text" id="emailMedico"
+                            [(ngModel)]="turnoSeleccinado.emailMedico">
+                    </div>
+                    <br>
+                    <h5>Datos Paciente</h5>
+                    <div class="row">
+                        <label class="labelModal" for="nomrePaciente">Paciente</label>
+                        <input class="inputModal" type="text" id="nomrePaciente"
+                            [(ngModel)]="turnoSeleccinado.paciente">
+                        <label class="labelModal" for="emailPaciente">Email
+                            Paciente</label>
+                        <input class="email" type="text" id="emailPaciente"
+                            [(ngModel)]="turnoSeleccinado.emailPaciente">
+                    </div>
+                </div>
+                <br>
+                <div class="row" *ngIf="turnoSeleccinado.arrayOpcionales.length > 0">
+                    <div class="table-responsive" style="margin-top: 10px;">
+                        <label><h5>Datos Adicionales</h5></label>
+                        <table class="table table-dark table-striped
+                            table-bordered
+                            table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Dato</th>
+                                    <th scope="col">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="turnoSeleccinado.arrayOpcionales;">
+                                <tr *ngFor="let item of turnoSeleccinado.arrayOpcionales">
+                                    <td>{{item.dato}}</td>
+                                    <td>{{item.valor}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="turnoSeleccinado.encuestaRealizada"
+                    data-backdrop="false" data-dismiss="modal"
+                    type="button" class="btn btn-outline-success"
+                    data-toggle="modal" data-target="#modalEncuesta">Ver encuesta</button>
+                    <button type="button" class="btn btn-outline-danger "
+                        data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>

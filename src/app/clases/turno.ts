@@ -8,7 +8,7 @@ export class Turno
     public paciente: string;
     public medico: string;
     public duracion: number;
-    public fecha: Date;
+    public fecha: string;
     public horario: string;
     public reseniaPaciente:string;
     public reseniaMedico:string;
@@ -22,8 +22,8 @@ export class Turno
     public arrayOpcionales
     public static dias:string[] = ["Lunes", "Martes", "Miercoles","Jueves", "Viernes", "Sabado"];
 
-        constructor(paciente: string, medico: string,emailPaciente:string,emailMedico:string, fecha: Date, horario: string,
-                                duracion: number, especialidad: Especialidad,
+        constructor(paciente: string, medico: string,emailPaciente:string,emailMedico:string, fecha: any, horario: string,
+                                duracion: number, especialidad: any,
                                 childKey?:string, reseniaMedico?:string,
                                 reseniaPaciente?:string, estado?:string, encuesta?:boolean,
                                 arrayOpcionales?:Array<Opcionales>)

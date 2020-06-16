@@ -91,7 +91,7 @@ export class ConsultaTurnoComponent implements OnInit {
     {
       this.encuestaCompleta = true;
       this.encuestaService.crear(new Encuesta(this.selected.emailPaciente, this.selectorClinica, this.selectorProfesional,
-                  this.selectorStaff, this.comentario, this.selected.id));
+                  this.selectorStaff, this.comentario, this.selected.id, this.selected.childKey));
       this.selected.encuestaRealizada = true;
       this.turnosService.actualizar(this.selected);
       this.encuestaCompleta = false;

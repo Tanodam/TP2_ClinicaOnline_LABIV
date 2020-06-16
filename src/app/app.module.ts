@@ -26,6 +26,8 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-turnos.component';
+import { DatePipe } from '@angular/common';
+import { ArchivosComponent } from './componentes/archivos/archivos.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-
     ConsultaTurnoMedicoComponent,
     EncuestaComponent,
     BuscadorTurnosComponent,
+    ArchivosComponent,
 
   ],
   imports: [
@@ -60,8 +63,9 @@ import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-
     RecaptchaModule,
     RecaptchaFormsModule,
     BrowserAnimationsModule
+    
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
