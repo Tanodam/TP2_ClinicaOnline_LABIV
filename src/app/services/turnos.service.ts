@@ -51,15 +51,15 @@ export class TurnosService {
   new Turno("Valentina Marasca", "Graciela Fasciolo", "juan.gimenez@outlook.com", "graciela.fasciolo@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
   new Turno("Chiara Campodonico", "Graciela Fasciolo", "juan.gimenez@outlook.com", "graciela.fasciolo@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
   
-  new Turno("Miguel Lucchetta", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Giovanni Sorti", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Aldo Baio", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Giacomo Maggiori", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Bartolomeo Asta", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Elisa Bacino", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Leonardo Di Caprio", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Marcos Schumacher", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
-  new Turno("Raul Marcote", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Miguel Lucchetta", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Giovanni Sorti", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Aldo Baio", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Giacomo Maggiori", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Bartolomeo Asta", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Elisa Bacino", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Leonardo Di Caprio", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Marcos Schumacher", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
+  // new Turno("Raul Marcote", "German Piñero", "juan.gimenez@outlook.com", "german.piñero@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
   
   // new Turno("Fernando Alonso", "Anabella Coto", "juan.gimenez@outlook.com", "ana.coto@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
   // new Turno("Marc Marquez", "Anabella Coto", "juan.gimenez@outlook.com", "ana.coto@gmail.com", this.randomDate(), this.getRandomArbitrary(), 30, "Podologia",null,null,null,"Finalizado",null,null),
@@ -88,7 +88,7 @@ private getRandomArbitrary() {
 private randomDate() {
   let startDate = new Date(2020,6,14);
   let endDate = new Date(2020,6,29);
-  return this.datepipe.transform(this.DateGenerator.getRandomDateInRange(startDate, endDate), 'dd-MM-yyyy'); // random date in range
+  return this.datepipe.transform(this.DateGenerator.getRandomDateInRange(startDate, endDate), 'yyyy-MM-dd'); // random date in range
 }
 
 public turnosHarcoded()

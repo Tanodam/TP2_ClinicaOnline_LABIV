@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-turnos.component';
 import { DatePipe } from '@angular/common';
 import { ArchivosComponent } from './componentes/archivos/archivos.component';
+import { InformesComponent } from './componentes/informes/informes.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ArchivosComponent } from './componentes/archivos/archivos.component';
     EncuestaComponent,
     BuscadorTurnosComponent,
     ArchivosComponent,
+    InformesComponent,
 
   ],
   imports: [

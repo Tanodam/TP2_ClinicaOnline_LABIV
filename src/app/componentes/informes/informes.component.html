@@ -1,0 +1,53 @@
+<app-cabecera></app-cabecera>
+
+<br><br><br><br>
+
+<div class="container">
+    <label><h5>Informe de Profesionales</h5></label>
+    <div class="row">
+        <div class="col-sm">
+            <label>a- Los días y horarios que se Ingresaron al sistema.</label>
+        </div>
+        <div class="col-sm">
+            <app-archivos [nombreArchivo]="'logsInicioSesion'"
+                [datos]="sesiones"></app-archivos>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <label>b- Cantidad de operaciones de todos por especialidad</label>
+        </div>
+        <div class="col-sm">
+            <app-archivos [nombreArchivo]="'operacionesPorEspecialidad'"
+                [datos]="contadorPorEspecialidad"></app-archivos>
+        </div>
+    </div>
+    <label><h5>Informe de los dias de la semana</h5></label>
+    <div class="row">
+        <div class="col-sm">
+            <label>a- Cantidad de turnos por día de la semana.</label>
+        </div>
+        <div class="col-sm">
+            <app-archivos [nombreArchivo]="'turnosPorDias'"
+                [datos]="contadorPorDias"></app-archivos>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <label>b- Médicos por cantidad de turnos.</label>
+        </div>
+        <div class="col-sm">
+            <app-archivos [nombreArchivo]="'medicosPorDia'"
+                [datos]="medicosPorDia"></app-archivos>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <label>c- Médicos por cantidad de días.</label>
+        </div>
+        <div class="col-sm">
+            <app-archivos [nombreArchivo]="'operacionesPorEspecialidad'"
+                [datos]="contadorPorEspecialidad"></app-archivos>
+        </div>
+    </div>
+</div>

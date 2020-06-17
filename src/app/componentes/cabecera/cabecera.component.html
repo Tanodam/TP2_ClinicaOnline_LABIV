@@ -37,6 +37,14 @@
             <a *ngIf="this.usuario.tipo == 'ADMIN'"class="dropdown-item" [routerLink]="'/todosLosTurnos'">Ver Todos Turnos</a>
           </div>
       </li>
+      <li *ngIf="this.usuario" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Informes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a *ngIf="this.usuario.tipo == 'ADMIN'" class="dropdown-item"[routerLink]="'/informes'">Ver Informes</a>
+        </div>
+    </li>
     </ul>
 
 

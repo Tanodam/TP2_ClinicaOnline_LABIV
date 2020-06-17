@@ -1,25 +1,20 @@
+import { ThrowStmt } from '@angular/compiler';
+
 export class Sesion
 {
 
     idUsuario: string;
     nombreUsuario: string;
-    fechaInicio : Date;
-    fechaFin : Date;
-    duracion : number;
+    fechaLogin : string;
+    horaLogin : string
+
 
     
-    public static CrearSesion(idUsuario: string, nombreUsuario: string, fechaInicio: string,
-                              id?: string, duracion?: number, fechaFin?: string)
+    constructor(idUsuario: string, nombreUsuario: string, fechaLogin: string, horaLogin : string)
     {
-        let sesion = new Sesion();
-
-        sesion.idUsuario = idUsuario;
-        sesion.nombreUsuario = nombreUsuario;
-        sesion.fechaInicio = new Date(fechaInicio);
-        sesion.id = id ? id : null;
-        sesion.duracion = duracion ? duracion : null;
-        sesion.fechaFin = fechaFin ? new Date(fechaFin) : null;
-
-        return sesion;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.fechaLogin = fechaLogin;
+        this.horaLogin = horaLogin;
     }
 }

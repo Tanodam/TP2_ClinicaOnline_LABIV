@@ -23,7 +23,7 @@
                 type="date" (change)="keyPress($event)" [(ngModel)]="filter">
         </div>
         <div class="col-4">
-            <app-archivos></app-archivos>
+            <app-archivos [nombreArchivo]="'turnosFiltrados'" [datos]="turnosFiltrados"></app-archivos>
         </div>
         <div class="row">
             <div class="col">

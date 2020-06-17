@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { TurnosService } from 'src/app/services/turnos.service';
 import { FormControl } from '@angular/forms';
+import { SesionService } from 'src/app/services/sesion.service';
+import { Sesion } from 'src/app/clases/sesion';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-login',
@@ -23,7 +26,8 @@ export class LoginComponent implements OnInit {
   public captchaCompleto;
 
   constructor(private authService: AuthService, private router: Router, 
-              private usuarioService:UsuariosService, private turnoService:TurnosService) { }
+              private usuarioService:UsuariosService, private turnoService:TurnosService,
+              private sesionService: SesionService, private datepipe: DatePipe) { }
 
   ngOnInit(): void {
     let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
@@ -37,6 +41,15 @@ export class LoginComponent implements OnInit {
       .then((res)=>
       {
         let usuario = this.usuarioService.traerUsuario(this.email);
+        if(usuario.tipo == "MEDICO")
+        {
+          this.sesionService.crear(new Sesion(usuario.mail, usuario.nombre+" "+usuario.apellido,
+          this.datepipe.transform(Date.now(), 'dd-MM-yyyy'), this.datepipe.transform(Date.now(), 'hh:mm:ss') ))
+        }
+        else if (usuario.tipo == "ADMIN")
+        {
+          this.sesionService.traerSesiones();
+        }
         localStorage.setItem("usuarioEnLinea", JSON.stringify(usuario));
         this.turnoService.traerTurnos();
         this.onLoginRedirect();
