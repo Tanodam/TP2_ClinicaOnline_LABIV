@@ -16,16 +16,16 @@ import { ArchivosComponent } from './componentes/archivos/archivos.component';
 import { InformesComponent } from './componentes/informes/informes.component';
 
 const routes: Routes = [{path: '' ,component: HomeComponent,  data: {animation: 'Inicio'}},
-{path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard]},
+{path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard], data: {animation: 'Pacientes'} },
 {path: 'Registro' ,component: RegisterComponent, },
 {path: 'Login' ,component: LoginComponent},
-{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent, canActivate:[AuthGuard]},
-{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent, canActivate:[AuthGuard]},
-{path: 'altaTurnos' ,component: AltaTurnoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'}},
-{path: 'consultaTurnos' ,component: ConsultaTurnoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'} },
-{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'}},
-{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent, canActivate:[AuthGuard],data: {animation: 'AltaTurno'}},
-{path: 'informes' ,component: InformesComponent, canActivate:[AuthGuard],data: {animation: 'AltaTurno'}}
+{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent, canActivate:[AuthGuard], data: {animation: 'Pacientes'} },
+{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent, canActivate:[AuthGuard], data: {animation: 'Medicos'} },
+{path: 'altaTurnos' ,component: AltaTurnoComponent,canActivate:[AuthGuard], data: {animation: '*'}},
+{path: 'consultaTurnos' ,component: ConsultaTurnoComponent,canActivate:[AuthGuard], data: {animation: 'Pacientes'} },
+{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent,canActivate:[AuthGuard], data: {animation: 'Medicos'}},
+{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent, canActivate:[AuthGuard],data: {animation: '*'}},
+{path: 'informes' ,component: InformesComponent, canActivate:[AuthGuard],data: {animation: 'Graficos'}}
 ];
 
 @NgModule({
