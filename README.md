@@ -9,7 +9,8 @@ Este es un trabajo practico para UTN-FRA para la materia Laboratorio de Computac
 Lunes a Viernes en el horario de 8:00 a 19:00.
 Sábados en el horario de 8:00 a 14:00.
 ```
-
+### Inicio de Sesion
+![principal](https://github.com/tanodam/TP2_ClinicaOnline_LABIV/master/img/login.gif)
 ### Usuarios 🔧
 
 _Tenemos 3 tipos de usuarios, ADMIN, MEDICO y USUARIO_
