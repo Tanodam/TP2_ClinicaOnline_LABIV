@@ -18,6 +18,7 @@ export class BuscadorTurnosComponent implements OnInit {
   public encuestaSeleccionada;
 
   ngOnInit(): void {
+    this.encuestaSeleccionada = false;
     console.log(this.turnoService.turnosHarcoded());
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
       this.turnoService.turnosHarcoded().forEach(element => {

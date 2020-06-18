@@ -89,7 +89,7 @@
                         <div class="col-sm">
                             <label for="rangeProfesional">Evaluacion Profesional</label>
                             <div class="multi-range-field my-5 pb-5">
-                                <input disabled #Profesional
+                                <input *ngIf="encuestaSeleccionada" disabled #Profesional
                                     id="rangeProfesional"
                                     type="range" min="0" max="5"
                                     value="encuestaSeleccionada[0].valorProfesional">
@@ -101,7 +101,7 @@
                         <div class="col-sm">
                             <label for="rangeStaff">Evaluacion Staff</label>
                             <div class="multi-range-field my-5 pb-5">
-                                <input disabled #Staff id="rangeStaff"
+                                <input *ngIf="encuestaSeleccionada" disabled #Staff id="rangeStaff"
                                     type="range"
                                     min="0" max="5"
                                     value="encuestaSeleccionada[0].valorStaffAdministrativo">
@@ -114,7 +114,7 @@
                         <div class="col-sm">
                             <label for="rangeStaff">Evaluacion instalaciones</label>
                             <div class="multi-range-field my-5 pb-5">
-                                <input disabled #Clinica id="rangeStaff"
+                                <input *ngIf="encuestaSeleccionada" disabled #Clinica id="rangeStaff"
                                     type="range"
                                     min="0" max="5"
                                     value="encuestaSeleccionada[0].valorInstalaciones">
