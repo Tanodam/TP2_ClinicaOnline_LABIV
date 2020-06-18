@@ -18,7 +18,8 @@ export class BuscadorTurnosComponent implements OnInit {
   public encuestaSeleccionada;
 
   ngOnInit(): void {
-    this.encuestaSeleccionada = false;
+    this.encuestaSeleccionada = null;
+    this.turnoSeleccinado = null;
     console.log(this.turnoService.turnosHarcoded());
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
     this.encuestas = JSON.parse(localStorage.getItem("encuestas"));
@@ -102,13 +103,13 @@ export class BuscadorTurnosComponent implements OnInit {
 
   seleccionado(item)
   {
-    console.log("entro")
     this.turnoSeleccinado = item;
     if(this.turnoSeleccinado.encuestaRealizada)
     {
       this.encuestaSeleccionada = this.encuestas.filter(x => x.keyTurno === this.turnoSeleccinado.childKey)[0];
       
     }
+    console.log(this.encuestaSeleccionada);
   }
 
 }
