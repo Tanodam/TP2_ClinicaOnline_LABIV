@@ -72,7 +72,7 @@
 
 
             </div>
-            <div class="form-group">
+            <div *ngIf="profesional" class="form-group">
               <label for="agregarEspecialidad">Desea agregar una especialidad?</label>
               <input type="text" class="form-control" id="agregarEspecialidad"
                 formControlName="especialidadNueva" name="agregarEspecialidad">
