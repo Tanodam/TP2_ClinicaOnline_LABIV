@@ -109,8 +109,8 @@ export class BuscadorTurnosComponent implements OnInit {
     this.turnoSeleccinado = item;
     if(this.turnoSeleccinado.encuestaRealizada)
     {
-      this.encuestaSeleccionada = this.encuestas.filter(x => x.keyTurno === this.turnoSeleccinado.childKey);
-      console.log(this.encuestaSeleccionada[0]);
+      this.encuestaSeleccionada = this.encuestas.filter(x => x.keyTurno === this.turnoSeleccinado.childKey)[0];
+      
     }
   }
 

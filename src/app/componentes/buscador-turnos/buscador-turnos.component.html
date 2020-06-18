@@ -92,10 +92,10 @@
                                 <input *ngIf="encuestaSeleccionada" disabled #Profesional
                                     id="rangeProfesional"
                                     type="range" min="0" max="5"
-                                    value="encuestaSeleccionada[0].valorProfesional">
+                                    value="encuestaSeleccionada.valorProfesional">
                                 <br>
                                 Valor: {{
-                                encuestaSeleccionada[0].valorProfesional }}
+                                encuestaSeleccionada.valorProfesional }}
                             </div>
                         </div>
                         <div class="col-sm">
@@ -104,10 +104,10 @@
                                 <input *ngIf="encuestaSeleccionada" disabled #Staff id="rangeStaff"
                                     type="range"
                                     min="0" max="5"
-                                    value="encuestaSeleccionada[0].valorStaffAdministrativo">
+                                    value="encuestaSeleccionada.valorStaffAdministrativo">
                                 <br>
                                 Valor: {{
-                                encuestaSeleccionada[0].valorStaffAdministrativo
+                                encuestaSeleccionada.valorStaffAdministrativo
                                 }}
                             </div>
                         </div>
@@ -117,18 +117,18 @@
                                 <input *ngIf="encuestaSeleccionada" disabled #Clinica id="rangeStaff"
                                     type="range"
                                     min="0" max="5"
-                                    value="encuestaSeleccionada[0].valorInstalaciones">
+                                    value="encuestaSeleccionada.valorInstalaciones">
                                 <br>
                                 Valor: {{
-                                encuestaSeleccionada[0].valorInstalaciones }}
+                                encuestaSeleccionada.valorInstalaciones }}
                             </div>
                         </div>
                     </div>
                     <label for="consejo"><h5>Comentario del paciente</h5></label>
                     <textarea disabled class="textarea"
-                        [(ngModel)]="encuestaSeleccionada[0].consejo"
+                        [(ngModel)]="encuestaSeleccionada.consejo"
                         maxlength="1000" id="consejo" cols="30" rows="50"></textarea>
-                    <p>1000/ {{1000-encuestaSeleccionada[0].consejo.length }}</p>
+                    <p>1000/ {{1000-encuestaSeleccionada.consejo.length }}</p>
                 </div>
             </div>
             <div class="modal-footer">
