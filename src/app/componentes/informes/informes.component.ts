@@ -15,13 +15,21 @@ export class InformesComponent implements OnInit {
   public contadorPorEspecialidad:any;
   public especialidades:any;
   public dias;
+  public diasDesordenados;
   public contadorPorDias;
   public medicosPorDia;
+  public arrayMedicos;
+  public turnosPorMedico;
+  public contadorDias;
+  public cantidadMedicos;
 
   ngOnInit(): void {
     this.especialidades=[];
     this.dias=[];
+    this.diasDesordenados=[];
+    this.turnosPorMedico = [];
     this.contadorPorDias=[];
+    this.arrayMedicos=[]
     this.contadorPorEspecialidad = [];
     this.medicosPorDia=[];
     this.sesiones = JSON.parse(localStorage.getItem("sesiones"));
@@ -30,18 +38,32 @@ export class InformesComponent implements OnInit {
       this.turnos.push(element);
     });
     this.turnos.forEach(element => {
-      if(!this.dias.includes(element.fecha))
+      let dia = this.datepipe.transform(new Date(element.fecha));
+      if(!this.diasDesordenados.includes(dia))
       {
-        this.dias.push(element.fecha);
+        this.diasDesordenados.push(dia);
       }
       if(!this.especialidades.includes(element.especialidad))
       {
         this.especialidades.push(element.especialidad);
       }
+      if(!this.arrayMedicos.includes(element.medico))
+      {
+        this.arrayMedicos.push(element.medico);
+      }
     });
+    //console.log(this.diasDesordenados);
+    this.diasDesordenados.sort((b, a) => new Date(b).getDay() - new Date(a).getDay());
+    this.diasDesordenados.forEach(dia => {
+      if(!this.dias.includes(this.datepipe.transform(new Date(dia),'EEEE')))
+      {
+        this.dias.push(this.datepipe.transform(new Date(dia),'EEEE'))
+      }
+    });
+    console.log(this.dias)
+    
     this.especialidades.forEach(elemento => {
-      let contador = 0;
-      let contadorDias = 0;
+      let contador = 0;;
       this.turnos.forEach(element => {
         if(element.especialidad == elemento)
         {
@@ -51,30 +73,35 @@ export class InformesComponent implements OnInit {
       this.contadorPorEspecialidad.push({"Especialidad":elemento, "Cantidad": contador})
     });
     this.dias.forEach(elemento => {
-      let contadorDias = 0;
-      let cantidadMedicos = 0
-      let arrayMedicos=[];
+      this.contadorDias = 0;
+      this.cantidadMedicos = 0;
       this.turnos.forEach(element => {
-        if(element.fecha == elemento)
+        if(this.datepipe.transform(new Date(element.fecha),'EEEE') == elemento)
         {
-          contadorDias++;
-          if(!arrayMedicos.includes(element.emailMedico))
+          this.contadorDias++;
+          if(!this.arrayMedicos.includes(element.emailMedico))
           {
-            arrayMedicos.push(element.emailMedico);
-            cantidadMedicos++;
+            //this.arrayMedicos.push(element.emailMedico);
+            this.cantidadMedicos++;
           }
         }
       });
-      let value = this.datepipe.transform(elemento,'EEEE, MMMM d, y');
-      this.contadorPorDias.push({"Dia":value, "Cantidad Turnos": contadorDias})
-      this.medicosPorDia.push({"Dia":value, "Cantidad Medicos": cantidadMedicos})
+      this.contadorPorDias.push({"Dia":elemento, "CantidadTurnos": this.contadorDias})
+      this.medicosPorDia.push({"Dia":elemento, "CantidadMedicos": this.cantidadMedicos})
     });
-    this.contadorPorDias.sort((b, a) => new Date(b.Dia).getTime() - new Date(a.Dia).getTime());
-    this.medicosPorDia.sort((b, a) => new Date(b.Dia).getTime() - new Date(a.Dia).getTime());
-    
-  
-    
+    // this.contadorPorDias.sort((b, a) => new Date(b.Dia).getDay() - new Date(a.Dia).getDay());
+    // this.medicosPorDia.sort((b, a) => new Date(b.Dia).getTime() - new Date(a.Dia).getTime());
 
+    this.arrayMedicos.forEach(medico => {
+      let contadorTurnosPorMedico = 0;
+      this.turnos.forEach(turno => {
+        if(medico == turno.medico)
+        {
+          contadorTurnosPorMedico++;
+        }
+      });
+      this.turnosPorMedico.push({"Medico":medico, "CantidadTurnos": contadorTurnosPorMedico})
+    });
   }
 
 }

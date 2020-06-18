@@ -12,6 +12,8 @@
             <app-archivos [nombreArchivo]="'logsInicioSesion'"
                 [datos]="sesiones"></app-archivos>
         </div>
+        <div class="col-sm">
+        </div>
     </div>
     <div class="row">
         <div class="col-sm">
@@ -20,6 +22,9 @@
         <div class="col-sm">
             <app-archivos [nombreArchivo]="'operacionesPorEspecialidad'"
                 [datos]="contadorPorEspecialidad"></app-archivos>
+        </div>
+        <div class="col-sm">
+            <app-graficobarras [datasos]="null" [datos]="contadorPorEspecialidad"></app-graficobarras>
         </div>
     </div>
     <label><h5>Informe de los dias de la semana</h5></label>
@@ -31,23 +36,32 @@
             <app-archivos [nombreArchivo]="'turnosPorDias'"
                 [datos]="contadorPorDias"></app-archivos>
         </div>
+        <div class="col-sm">
+            <app-graficobarras [datasos]="contadorPorDias"></app-graficobarras>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm">
             <label>b- Médicos por cantidad de turnos.</label>
         </div>
         <div class="col-sm">
-            <app-archivos [nombreArchivo]="'medicosPorDia'"
-                [datos]="medicosPorDia"></app-archivos>
+            <app-archivos [nombreArchivo]="'turnosPorMedico'"
+                [datos]="turnosPorMedico"></app-archivos>
         </div>
+        <div class="col-sm">
+            <app-grafico-columnas [datos]="turnosPorMedico"></app-grafico-columnas>
+        </div>  
     </div>
     <div class="row">
         <div class="col-sm">
             <label>c- Médicos por cantidad de días.</label>
         </div>
         <div class="col-sm">
-            <app-archivos [nombreArchivo]="'operacionesPorEspecialidad'"
-                [datos]="contadorPorEspecialidad"></app-archivos>
+            <app-archivos [nombreArchivo]="'medicosPorDia'"
+            [datos]="medicosPorDia"></app-archivos>
+        </div>
+        <div class="col-sm">
+            <app-grafico-torta [datos]="medicosPorDia"></app-grafico-torta>
         </div>
     </div>
 </div>

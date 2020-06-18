@@ -1,0 +1,9 @@
+<input type="button" value="Mostrar grafico" class="btn btn-success" (click)="mostrar()">  
+<div *ngIf="!this.formValido">
+
+    <figure class="highcharts-figure">
+        <highcharts-chart [Highcharts]="highchart" [options]="chartOptions" 
+        style = "width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+</figure>
+</div>

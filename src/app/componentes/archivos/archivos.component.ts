@@ -16,7 +16,7 @@ export class ArchivosComponent implements OnInit {
   constructor() { }
   @Input() datos;
   @Input() nombreArchivo;
-  public privados = ["arrayOpcionales","childKey","duracion","encuestaRealizada","reseniaMedico","reseniaPaciente",
+  public privados = ["id", "clave","chilKey", "duracion","arrayOpcionales","childKey","duracion","encuestaRealizada","reseniaMedico","reseniaPaciente",
   "emailMedico","emailPaciente", "avatar", "horasAtencion", "id", "imagen1", "imagen2", "password", "tipo", "aprobado"];
   
   ngOnInit(): void {
@@ -64,15 +64,6 @@ export class ArchivosComponent implements OnInit {
   {
     let data = [];
     this.datos.forEach(val => data.push(Object.assign({}, val)));
-    // Elimino los campos privados que no deben imprimirse
-    // data = Object.values(data).map(elemento => Object.entries(elemento).map(tuple => 
-    //   {
-    //     if(this.privados.includes(tuple[0])) 
-    //     { 
-    //       delete elemento[tuple[0]];
-    //     }
-    //   })
-    // );
 
  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };

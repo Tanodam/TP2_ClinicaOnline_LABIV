@@ -29,6 +29,11 @@ import { BuscadorTurnosComponent } from './componentes/buscador-turnos/buscador-
 import { DatePipe } from '@angular/common';
 import { ArchivosComponent } from './componentes/archivos/archivos.component';
 import { InformesComponent } from './componentes/informes/informes.component';
+import { GraficosComponent } from './componentes/graficos/graficos.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { GraficobarrasComponent } from './componentes/graficos/graficobarras/graficobarras.component';
+import { GraficoTortaComponent } from './componentes/graficos/grafico-torta/grafico-torta.component';
+import { GraficoColumnasComponent } from './componentes/graficos/grafico-columnas/grafico-columnas.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,10 @@ import { InformesComponent } from './componentes/informes/informes.component';
     BuscadorTurnosComponent,
     ArchivosComponent,
     InformesComponent,
+    GraficosComponent,
+    GraficobarrasComponent,
+    GraficoTortaComponent,
+    GraficoColumnasComponent,
 
   ],
   imports: [
@@ -64,7 +73,8 @@ import { InformesComponent } from './componentes/informes/informes.component';
     NgbModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HighchartsChartModule
     
   ],
   providers: [DatePipe],
