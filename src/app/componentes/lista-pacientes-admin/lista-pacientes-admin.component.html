@@ -2,16 +2,17 @@
 <br>
 <br>
 <br>
+
 <div class="container">
-  <table class="table">
-    <thead class="thead-dark">
+  <table class="table table-dark table-striped table-bordered table-hover">
+    <thead class="table-dark">
       <tr>
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of pacientes" (click)="seleccionado(item)"
+      <tr *ngFor="let item of pacientes" appColor (click)="seleccionado(item)"
         data-toggle="modal" data-target="#exampleModal">
         <td>{{item.nombre}}</td>
         <td>{{item.apellido}}</td>
@@ -36,7 +37,7 @@
       </div>
       <div *ngIf="selected" class="modal-body">
         <div>
-          <h2>{{this.selected.nombre}} {{this.selected.apellido}}</h2>
+          <h2>{{this.selected | nombre}}</h2>
           <h5>{{this.selected.mail}}</h5>
           <h5>{{this.selected.edad}} Años</h5>
         </div>

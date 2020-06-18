@@ -34,6 +34,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { GraficobarrasComponent } from './componentes/graficos/graficobarras/graficobarras.component';
 import { GraficoTortaComponent } from './componentes/graficos/grafico-torta/grafico-torta.component';
 import { GraficoColumnasComponent } from './componentes/graficos/grafico-columnas/grafico-columnas.component';
+import { NombrePipe } from './pipes/nombre.pipe';
+import { ColorBotonDirective } from './directivas/color-boton.directive';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { GraficoColumnasComponent } from './componentes/graficos/grafico-columna
     GraficobarrasComponent,
     GraficoTortaComponent,
     GraficoColumnasComponent,
+    NombrePipe,
+    ColorBotonDirective,
 
   ],
   imports: [
