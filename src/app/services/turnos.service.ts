@@ -113,7 +113,7 @@ public turnosHarcoded()
           var data = child.val();
           turnos.push(new Turno(data.paciente,data.medico,data.emailPaciente,data.emailMedico,data.fecha,
             data.horario,data.duracion,data.especialidad,child.key,data.reseniaMedico,data.reseniaPaciente,
-             data.estado, data.encuestaRealizada, data.arrayOpcionales));
+             data.estado, data.encuestaRealizada, data.arrayOpcionales, data.id));
         });
         localStorage.setItem('turnos', JSON.stringify(turnos));
         console.info("Turnos");

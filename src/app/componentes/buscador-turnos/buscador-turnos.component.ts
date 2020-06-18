@@ -22,7 +22,6 @@ export class BuscadorTurnosComponent implements OnInit {
     this.turnoSeleccinado = null;
     this.encuestas = [];
     this.turnosFiltrados = [];
-    console.log(this.turnoService.turnosHarcoded());
     this.turnos = JSON.parse(localStorage.getItem("turnos"));
     this.encuestas = JSON.parse(localStorage.getItem("encuestas"));
     this.selectedCriteria = "Todos"
@@ -110,7 +109,6 @@ export class BuscadorTurnosComponent implements OnInit {
     if(this.turnoSeleccinado.encuestaRealizada)
     {
       this.encuestaSeleccionada = this.encuestas.filter(x => x.keyTurno === this.turnoSeleccinado.childKey)[0];
-      
     }
     console.log(this.encuestaSeleccionada);
 

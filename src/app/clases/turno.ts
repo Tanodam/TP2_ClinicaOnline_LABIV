@@ -1,6 +1,7 @@
 import { Especialidad } from './especialidad';
 import { ThrowStmt } from '@angular/compiler';
 import { Opcionales } from './opcionales';
+import { setLogLevel } from 'firebase';
 
 export class Turno
 {
@@ -26,7 +27,7 @@ export class Turno
                                 duracion: number, especialidad: any,
                                 childKey?:string, reseniaMedico?:string,
                                 reseniaPaciente?:string, estado?:string, encuesta?:boolean,
-                                arrayOpcionales?:Array<Opcionales>)
+                                arrayOpcionales?:Array<Opcionales>, id?:string)
     {
         this.paciente = paciente;
         this.medico = medico;
@@ -36,7 +37,6 @@ export class Turno
         this.duracion = duracion;
         this.especialidad = especialidad;
         this.horario = horario;
-        this.id = this.generarId();
         if(estado)
         {
             this.estado = estado;
@@ -82,18 +82,20 @@ export class Turno
         }
     }
 
-    generarId():string
+    generarId()
     {
-        let turnos = JSON.parse(localStorage.getItem("turnos"));
-        if(!turnos)
-        {
-            return "0";
-        }
-        else
-        {
-            let ultimoTurno = turnos.length;
-            return ultimoTurno;
-        }
+        // let turnos = JSON.parse(localStorage.getItem("turnos"));
+        // console.log(turnos.length);
+        // if(!turnos)
+        // {
+        //     return "1";
+        // }
+        // else
+        // {
+        //     let ultimoTurno = turnos.length;
+        //     ultimoTurno++
+        //     return ultimoTurno;
+        // }
     }
 
     public static AgregarDato(turno: Turno, key: string, value: any)

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { slideInAnimation } from './animation';
 import { RouterOutlet } from '@angular/router';
 
@@ -10,7 +10,11 @@ import { RouterOutlet } from '@angular/router';
     slideInAnimation
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+
+
+  }
   title = 'tp-Clinica-Online';
   
   preparedRoute(outlet: RouterOutlet)

@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { SesionService } from 'src/app/services/sesion.service';
 import { Sesion } from 'src/app/clases/sesion';
 import { DatePipe } from '@angular/common'
+import { EncuestasService } from 'src/app/services/encuestas.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, 
               private usuarioService:UsuariosService, private turnoService:TurnosService,
-              private sesionService: SesionService, private datepipe: DatePipe) { }
+              private sesionService: SesionService, private datepipe: DatePipe,
+              private encuestaService:EncuestasService) { }
 
   ngOnInit(): void {
     let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
         else if (usuario.tipo == "ADMIN")
         {
           this.sesionService.traerSesiones();
+          this.encuestaService.traerEncuestas();
         }
         localStorage.setItem("usuarioEnLinea", JSON.stringify(usuario));
         this.turnoService.traerTurnos();
