@@ -28,9 +28,20 @@ https://clinica-online-ddesario.herokuapp.com/
 ### Seleccion de Turnos
 ![principal](https://github.com/tanodam/TP2_ClinicaOnline_LABIV/blob/master/img/solicitarTurno.gif)
 
+### Graficos
+![principal](https://github.com/tanodam/TP2_ClinicaOnline_LABIV/blob/master/img/graficos.gif)
+
 ## Construido con 🛠️
 
 _Angular - Bootstrap - Firebase
+
+## Descripcion de la Clinica 🚀
+
+“En nuestra Clinica la calidad se refleja en todos los niveles de servicios. Nuestro Sanatorio está equipado con la última tecnología, brindando un servicio de alto nivel, tanto en calidad médica como en hotelería y confort.
+Trabajan en ella profesionales de diversas especialidades, que ocupan los consultorios acorde a su disponibilidad, y reciben en ellos
+pacientes con turno para consulta o tratamiento. Dichos turnos son pedidos por la web
+seleccionando el profesional o la especialidad.
+Nos podes encontrar en Avenida Pavon 180005 enfrente de la heladeria Grido entre las calles Francia y Presindente Rivadavia“
 
 ## Autores ✒️
 
