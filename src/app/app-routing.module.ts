@@ -17,15 +17,15 @@ import { InformesComponent } from './componentes/informes/informes.component';
 
 const routes: Routes = [{path: '' ,component: HomeComponent,  data: {animation: 'Inicio'}},
 {path: 'Informacion' ,component: InformacionComponent, canActivate:[AuthGuard]},
-{path: 'Registro' ,component: RegisterComponent},
+{path: 'Registro' ,component: RegisterComponent, },
 {path: 'Login' ,component: LoginComponent},
-{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent},
-{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent},
-{path: 'altaTurnos' ,component: AltaTurnoComponent, data: {animation: 'AltaTurno'}},
-{path: 'consultaTurnos' ,component: ConsultaTurnoComponent, data: {animation: 'AltaTurno'} },
-{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent, data: {animation: 'AltaTurno'}},
-{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent, data: {animation: 'AltaTurno'}},
-{path: 'informes' ,component: InformesComponent, data: {animation: 'AltaTurno'}}
+{path: 'ListadoMedicos' ,component: ListaMedicosAdminComponent, canActivate:[AuthGuard]},
+{path: 'ListadoPacientes' ,component: ListaPacientesAdminComponent, canActivate:[AuthGuard]},
+{path: 'altaTurnos' ,component: AltaTurnoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'}},
+{path: 'consultaTurnos' ,component: ConsultaTurnoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'} },
+{path: 'consultaTurnoMedico' ,component: ConsultaTurnoMedicoComponent,canActivate:[AuthGuard], data: {animation: 'AltaTurno'}},
+{path: 'todosLosTurnos' ,component: BuscadorTurnosComponent, canActivate:[AuthGuard],data: {animation: 'AltaTurno'}},
+{path: 'informes' ,component: InformesComponent, canActivate:[AuthGuard],data: {animation: 'AltaTurno'}}
 ];
 
 @NgModule({
