@@ -25,6 +25,9 @@ https://clinica-online-ddesario.herokuapp.com/
 ### Seleccion de fotos
 ![principal](https://github.com/tanodam/TP2_ClinicaOnline_LABIV/blob/master/img/register.gif)
 
+### Seleccion de Turnos
+![principal](https://github.com/tanodam/TP2_ClinicaOnline_LABIV/blob/master/img/solicitarTurno.gif)
+
 ## Construido con 🛠️
 
 _Angular - Bootstrap - Firebase
