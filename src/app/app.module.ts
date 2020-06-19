@@ -36,6 +36,7 @@ import { GraficoTortaComponent } from './componentes/graficos/grafico-torta/graf
 import { GraficoColumnasComponent } from './componentes/graficos/grafico-columnas/grafico-columnas.component';
 import { NombrePipe } from './pipes/nombre.pipe';
 import { ColorBotonDirective } from './directivas/color-boton.directive';
+import { HighlightSearchPipe } from './pipes/highlight-search.pipe';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ColorBotonDirective } from './directivas/color-boton.directive';
     GraficoColumnasComponent,
     NombrePipe,
     ColorBotonDirective,
+    HighlightSearchPipe,
 
   ],
   imports: [

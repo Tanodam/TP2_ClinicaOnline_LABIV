@@ -3,24 +3,11 @@
 <br><br>
 
 <div class="container">
+    <label for=""><h3>Buscador de Turnos</h3></label>
     <div class="row">
         <div class="col-6">
-            <select [(ngModel)]="selectedCriteria" (change)="filtrar()"
-                class="inputSelect">
-                <option value="Todos">Todos</option>
-                <option value="Medico">Medico</option>
-                <option value="Paciente">Paciente</option>
-                <option value="Especialidad">Especialidad</option>
-                <option value="Opcional">Opcional</option>
-                <option value="Fecha">Fecha</option>
-            </select>
-            <input class="inputSelect" *ngIf="selectedCriteria == 'Medico' ||
-                selectedCriteria == 'Paciente' ||
-                selectedCriteria == 'Especialidad' ||
-                selectedCriteria == 'Opcional'" (keyup)="keyPress($event)"
+            <input class="inputSelect" (keyup)="keyPress($event)"
                 type="text" [(ngModel)]="filter">
-            <input class="inputSelect" *ngIf="selectedCriteria == 'Fecha'"
-                type="date" (change)="keyPress($event)" [(ngModel)]="filter">
         </div>
         <div class="col-4">
             <app-archivos [nombreArchivo]="'turnosFiltrados'" [datos]="turnosFiltrados"></app-archivos>
@@ -52,7 +39,7 @@
                                     <td>{{item.paciente}}</td>
                                     <td>{{item.medico}}</td>
                                     <td>{{item.especialidad}}</td>
-                                    <td>{{item.fecha}}</td>
+                                    <td>{{item.fecha | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{item.horario}}</td>
                                     <td>{{item.estado}}</td>
                                     <td *ngIf="item.arrayOpcionales.length> 0">Si</td>
