@@ -42,7 +42,7 @@ export class BuscadorTurnosComponent implements OnInit {
 
           this.turnos.forEach(turno => {
             let medico = turno.medico.toLowerCase();
-            if (this.filter != "" && this.filter.length >= 3 && medico.includes(this.filter.toLowerCase())) {
+            if (this.filter != "" && medico.includes(this.filter.toLowerCase())) {
               // console.log(turno.medico);
               this.turnosFiltrados.push(turno);
             }
@@ -54,7 +54,7 @@ export class BuscadorTurnosComponent implements OnInit {
 
           this.turnos.forEach(turno => {
             let paciente = turno.paciente.toLowerCase();
-            if (this.filter.length >= 3 && paciente.includes(this.filter.toLowerCase())) {
+            if (this.filter != "" && paciente.includes(this.filter.toLowerCase())) {
               // console.log(turno.paciente);
               this.turnosFiltrados.push(turno);
             }
@@ -66,7 +66,7 @@ export class BuscadorTurnosComponent implements OnInit {
 
           this.turnos.forEach(turno => {
             let especialidad = turno.especialidad.toLowerCase();
-            if (this.filter.length >= 3 && especialidad.includes(this.filter.toLowerCase())) {
+            if (this.filter != "" && especialidad.includes(this.filter.toLowerCase())) {
               // console.log(turno.especialidad);
               this.turnosFiltrados.push(turno);
             }
@@ -86,7 +86,7 @@ export class BuscadorTurnosComponent implements OnInit {
           console.log(turno.arrayOpcionales)
           turno.arrayOpcionales.forEach(opcional => {
             let dato = opcional.dato.toLowerCase();
-            if (this.filter.length >= 3 && dato.includes(this.filter.toLowerCase())) {
+            if (this.filter != "" && dato.includes(this.filter.toLowerCase())) {
               // console.log("Dato: " +  dato + " Valor: " + opcional.valor);
               this.turnosFiltrados.push(turno);
             }
