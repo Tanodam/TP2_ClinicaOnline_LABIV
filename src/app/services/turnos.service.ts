@@ -20,6 +20,7 @@ export class TurnosService {
   new Turno("Tereza Gerez", "Florencia Picallo", "juan.gimenez@outlook.com", "flor1997@live.com.ar", this.randomDate(), "15:30", 30, "Dentista",null,null,null,"Finalizado",null,null),
   new Turno("Melanie Jazmin", "Florencia Picallo", "juan.gimenez@outlook.com", "flor1997@live.com.ar", this.randomDate(), "17:30", 30, "Dentista",null,null,null,"Finalizado",null,null),
   new Turno("Yamila Picallo", "Florencia Picallo", "juan.gimenez@outlook.com", "flor1997@live.com.ar", this.randomDate(), "16:30", 30, "Dentista",null,null,null,"Finalizado",null,null),
+  new Turno("Nehuen Schiavoni", "Florencia Picallo", "juan.gimenez@outlook.com", "flor1997@live.com.ar", this.randomDate(), this.getRandomArbitrary(), 30, "Dentista",null,null,null,"Finalizado",null,null),
   
   new Turno("Agustin Bofelli", "Claudio Gomez", "juan.gimenez@outlook.com", "claudio.gomez@gmail.com", this.randomDate(), "08:30", 30, "Oftalmologia",null,null,null,"Finalizado",null,null),
   new Turno("Nelson Desario", "Claudio Gomez", "juan.gimenez@outlook.com", "claudio.gomez@gmail.com", this.randomDate(), "12:30", 30, "Oftalmologia",null,null,null,"Finalizado",null,null),
