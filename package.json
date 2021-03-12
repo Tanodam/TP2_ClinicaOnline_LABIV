@@ -31,7 +31,7 @@
     "firebase": "^7.14.5",
     "highcharts": "^8.1.2",
     "highcharts-angular": "^2.4.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.5.4",
     "ng-recaptcha": "^5.0.0",
     "path": "^0.12.7",
